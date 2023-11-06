@@ -10,8 +10,8 @@
 <body>
 
     <?php
-    phpinfo();
-
+    // phpinfo();
+    
     function get_db()
     {
         $mongo = new MongoDB\Client(

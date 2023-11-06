@@ -1,4 +1,5 @@
 {
+    "name": "root/dev",
     "require": {
         "mongodb/mongodb": "^1.1"
     }
