@@ -3,8 +3,6 @@
 require '../../vendor/autoload.php';
 use core\qux;
 
-$foo->rujka();
-
 $rus = new qux();
 
 ?>
