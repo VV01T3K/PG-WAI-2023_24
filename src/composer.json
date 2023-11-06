@@ -1,0 +1,6 @@
+{
+    "name": "root/src",
+    "require": {
+        "mongodb/mongodb": "^1.1"
+    }
+}
