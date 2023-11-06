@@ -1,5 +1,18 @@
 {
     "name": "root/dev",
+    "description": "A project for WAI course at PG 2023/24",
+    "type": "project",
+    "authors": [
+        {
+            "name": "VV01T3K",
+            "email": "wojteks.access@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "core\\": "src/core"
+        }
+    },
     "require": {
         "mongodb/mongodb": "^1.1"
     }
