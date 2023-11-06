@@ -1,46 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP</title>
-</head>
+require '../../vendor/autoload.php';
+use core\qux;
 
-<body>
+$test = new test();
 
-    <?php
-    // phpinfo();
-    
-    function get_db()
-    {
-        $mongo = new MongoDB\Client(
-            "mongodb://localhost:27017/wai"
-            ,
-            [
-                'username' => 'wai_web'
-                ,
-                'password' => 'w@i_w3b',
-            ]
-        );
-        $db = $mongo->wai;
-        return $db;
-    }
+$test->hello();
+$test->hello();
+$test->hello();
 
-    $db = get_db();
-    //dokument opisujący produkt w sklepie:
-    $product = [
-        'name' => 'Laptop XYZ',
-        'price' => 2999,
-        'manufacturer' => 'ABC',
-        'description' => 'Ładny laptop.'
-    ];
-    //zapis do kolekcji products:
-    $db->products->insertOne($product);
+$foo = new Foo();
 
+$foo->rujka();
 
-    ?>
+$rus = new qux();
 
-</body>
+$rus->hello();
 
-</html>
+$rus = new core\lux();
+
+$rus->hello();

@@ -1,6 +1,13 @@
 {
-    "name": "root/dev",
-    "require": {
-        "mongodb/mongodb": "^1.1"
+    "autoload": {
+        "files": [
+            "src/lib1/Test.php"
+        ],
+        "classmap": [
+            "src/lib2"
+        ],
+        "psr-4": {
+            "core\\": "src/core"
+        }
     }
 }
