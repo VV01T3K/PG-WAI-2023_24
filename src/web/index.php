@@ -3,20 +3,27 @@
 require '../../vendor/autoload.php';
 use core\qux;
 
-$test = new test();
-
-$test->hello();
-$test->hello();
-$test->hello();
-
-$foo = new Foo();
-
 $foo->rujka();
 
 $rus = new qux();
 
-$rus->hello();
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-$rus = new core\lux();
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-$rus->hello();
+<body>
+    <p>test</p>
+
+
+    <?php $rus->hello(); ?>
+
+
+</body>
+
+</html>
