@@ -18,3 +18,4 @@
 </head>
 
 <body>
+    <a href="/">Back</a>

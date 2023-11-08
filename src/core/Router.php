@@ -1,5 +1,5 @@
 <?php
-namespace core;
+namespace app\core;
 
 class Router
 {
@@ -22,9 +22,6 @@ class Router
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
-        echo "<pre>";
-        var_dump($callback);
-        echo "</pre>";
         if ($callback === false) {
             http_response_code(404);
             return $this->renderView("status_404");
@@ -32,15 +29,30 @@ class Router
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
-        return call_user_func($callback);
+        if (is_array($callback)) {
+            // creates new instance of class
+            // bo Deprecated pokazywalo itd.
+            $callback[0] = new $callback[0]();
+        }
+        return call_user_func($callback, $this->request);
     }
-    public function renderView($view)
+    public function renderView($view, $params = [])
     {
-        include_once App::$ROOT . "/views/partials/header.php";
+        foreach ($params as $key => $value) {
+            // uses $key(string) as a name for new variable
+            $$key = $value;
+        }
 
-        include_once App::$ROOT . "/views/$view.php";
+        include_once Application::$ROOT . "/views/partials/header.php";
 
-        include_once App::$ROOT . "/views/partials/footer.php";
+        if ($_SESSION['user_id'] ?? false) {
+            echo " <a href='/logout'>Logout</a>";
+            echo "<br><div class='user'>Logged in as: " . $_SESSION['user_login'] . "</div>";
+        }
+
+        include_once Application::$ROOT . "/views/$view.php";
+
+        include_once Application::$ROOT . "/views/partials/footer.php";
     }
 
 
