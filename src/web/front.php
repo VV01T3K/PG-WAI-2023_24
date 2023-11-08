@@ -14,8 +14,8 @@ $app = new Application(dirname(__DIR__));
 $app->router->get('/', [SiteController::class, 'render_home']);
 
 
-
 $app->router->get('/image', [SiteController::class, 'render_image']);
+$app->router->post('/image', [SiteController::class, 'handle_image']);
 
 
 
