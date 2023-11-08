@@ -10,20 +10,22 @@ session_start();
 
 $app = new Application(dirname(__DIR__));
 
-$app->router->get('/', [SiteController::class, 'home']);
-$app->router->get('/contact', 'contact');
-$app->router->get('/form', [SiteController::class, 'form']);
-$app->router->post('/form', [SiteController::class, 'handleForm']);
 
-$app->router->get('/login', [SiteController::class, 'login']);
-$app->router->post('/login', [AuthController::class, 'login']);
+$app->router->get('/', [SiteController::class, 'render_home']);
 
-$app->router->get('/register', [SiteController::class, 'register']);
-$app->router->post('/register', [AuthController::class, 'register']);
 
-$app->router->get('/logout', [AuthController::class, 'logout']);
 
-$app->router->get('/add', 'add');
-$app->router->post('/add', [SiteController::class, 'handleAdd']);
+$app->router->get('/image', [SiteController::class, 'render_image']);
+
+
+
+$app->router->get('/register', [AuthController::class, 'render_register']);
+$app->router->get('/login', [AuthController::class, 'render_login']);
+$app->router->get('/logout', [AuthController::class, 'handle_logout']);
+
+$app->router->post('/register', [AuthController::class, 'handle_logout']);
+$app->router->post('/login', [AuthController::class, 'handle_logout']);
+
+
 
 $app->run();

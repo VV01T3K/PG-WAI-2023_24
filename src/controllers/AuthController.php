@@ -8,7 +8,17 @@ use app\core\Application;
 
 class AuthController extends Controller
 {
-    public function login($request)
+    public function render_login()
+    {
+        return $this->render('login');
+    }
+    public function render_register()
+    {
+        return $this->render('register');
+    }
+
+
+    public function handle_login($request)
     {
         $body = $request->getBody();
 
@@ -28,7 +38,7 @@ class AuthController extends Controller
         }
 
     }
-    public function register($request)
+    public function handle_register($request)
     {
         $body = $request->getBody();
 
@@ -45,7 +55,7 @@ class AuthController extends Controller
         Application::$app->db->save_user($user);
         return "Registered";
     }
-    public function logout()
+    public function handle_logout()
     {
         session_unset();
         session_destroy();
