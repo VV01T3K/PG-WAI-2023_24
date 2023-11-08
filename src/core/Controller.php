@@ -9,6 +9,7 @@ class Controller
         'image/jpg',
         'image/jpeg',
     ];
+    protected $pageSize = 10;
     public function render($view, $params = [])
     {
         return Application::$app->router->renderView($view, $params);

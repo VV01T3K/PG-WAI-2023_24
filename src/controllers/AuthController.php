@@ -53,7 +53,10 @@ class AuthController extends Controller
             'password' => $hash,
         ];
         Application::$app->db->save_user($user);
-        return "Registered";
+
+        echo $this->handle_login($request);
+
+        return "Registered and logged in";
     }
     public function handle_logout()
     {

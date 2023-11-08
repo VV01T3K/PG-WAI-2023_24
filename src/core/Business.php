@@ -19,11 +19,23 @@ class Business
         );
         $this->connection = $client->wai;
     }
-    public function save_product($product)
+
+    public function save_image($img)
     {
 
-        $this->connection->products->insertOne($product);
+        $this->connection->galery->insertOne($img);
 
+    }
+    public function get_page_images($page, $pageSize)
+    {
+        $skip = ($page - 1) * $pageSize;
+        $images = $this->connection->galery->find([], ['skip' => $skip, 'limit' => $pageSize]);
+        return $images;
+    }
+    public function get_max_page_images($pageSize)
+    {
+        $count = $this->connection->galery->count();
+        return ceil($count / $pageSize);
     }
     public function save_user($user)
     {

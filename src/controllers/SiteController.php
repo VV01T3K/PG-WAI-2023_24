@@ -7,6 +7,21 @@ use app\core\Controller;
 
 class SiteController extends Controller
 {
+
+    public function render_galery($request)
+    {
+        $page = $request->getBody()['page'] ?? 1;
+
+        $max_page = Application::$app->db->get_max_page_images($this->pageSize);
+        $images = Application::$app->db->get_page_images($page, $this->pageSize);
+
+        $params = [
+            'images' => $images,
+            'page' => $page,
+            'max_page' => $max_page,
+        ];
+        return $this->render('galery', $params);
+    }
     public function render_image()
     {
         return $this->render('image');
@@ -15,7 +30,6 @@ class SiteController extends Controller
     {
         $body = $request->getBody();
         $watermark = $body['watermark'];
-
 
         $img = $_FILES['img'];
         $tmp_path = $img['tmp_name'];
@@ -40,13 +54,24 @@ class SiteController extends Controller
 
 
         $path = Application::$ROOT . "/web/Images/original/$name";
-        if (move_uploaded_file($tmp_path, $path)) {
-            $this->miniaturize($path, 200, 125);
-            $this->watermark($path, $watermark);
-            return "Upload przebiegł pomyślnie!";
-        } else {
+        if (!move_uploaded_file($tmp_path, $path))
             return "Błąd przy przesyłaniu danych!";
-        }
+
+        $this->miniaturize($path, 200, 125);
+        $this->watermark($path, $watermark);
+
+        $imgDB = [
+            'name' => $name,
+            'author' => $body['author'],
+            'title' => $body['title'],
+            'visibility' => $body['visibility'] ?? 'public',
+        ];
+
+        Application::$app->db->save_image($imgDB);
+
+
+        return "Upload przebiegł pomyślnie!";
+
 
     }
 
