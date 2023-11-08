@@ -22,7 +22,7 @@ class Request
 
         if ($this->getMethod() === 'get') {
             foreach ($_GET as $key => $value) {
-                // sanitize the data
+                // sanitizing the data
                 // https://www.php.net/manual/en/filter.filters.sanitize.php
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
