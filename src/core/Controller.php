@@ -18,8 +18,7 @@ class Controller
 
         $type = mime_content_type($source);
         $name = basename($source);
-        // $path = Application::$ROOT . "/web/Images/thumbnails/mini_$name";
-        $path = Application::$ROOT . "/web/Images/original/mini_$name";
+        $path = Application::$ROOT . "/web/Images/thumbnails/mini_$name";
 
         if ($type == 'image/png')
             $img = imagecreatefrompng($source);
@@ -39,22 +38,22 @@ class Controller
     {
         $type = mime_content_type($source);
         $name = basename($source);
-        // $path = Application::$ROOT . "/web/Images/watermark/watermarked_$name";
-        $path = Application::$ROOT . "/web/Images/original/watermarked_$name";
+        $path = Application::$ROOT . "/web/Images/watermark/watermarked_$name";
 
         if ($type == 'image/png')
             $img = imagecreatefrompng($source);
         else
             $img = imagecreatefromjpeg($source);
 
+        $opacity = 0.5;
+        $font_size = 20;
+        $font = Application::$ROOT . "/web/static/fonts/Geist.Mono/GeistMono-SemiBold.otf";
 
-        $white = imagecolorallocate($img, 255, 255, 255);
-        $font = Application::$ROOT . "/web/static/fonts/Geist/GeistVariableVF.ttf";
-        $size = 30;
-        $angle = 0;
-        $x = $size / 2;
-        $y = $size * 1.5;
-        imagettftext($img, $size, $angle, $x, $y, $white, $font, $text);
+        $color = imagecolorallocatealpha($img, 220, 20, 60, (1 - $opacity) * 127);
+        $angle = -15;
+        $x = $font_size / 2;
+        $y = $font_size * 1.5;
+        imagettftext($img, $font_size, $angle, $x, $y, $color, $font, $text);
 
 
         if ($type == 'image/png')
