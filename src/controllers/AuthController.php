@@ -46,12 +46,12 @@ class AuthController extends Controller
             return "Passwords don't match";
         }
 
-        $hash = password_hash($body['password'], PASSWORD_DEFAULT);
         $user = [
             'login' => $body['login'],
             'email' => $body['email'],
-            'password' => $hash,
+            'password' => password_hash($body['password'], PASSWORD_DEFAULT),
         ];
+
         Application::$app->db->save_user($user);
 
         echo $this->handle_login($request);

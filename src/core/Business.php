@@ -28,8 +28,16 @@ class Business
     }
     public function get_page_images($page, $pageSize)
     {
-        $skip = ($page - 1) * $pageSize;
-        $images = $this->connection->galery->find([], ['skip' => $skip, 'limit' => $pageSize]);
+        // jesli null to "" i nie robi
+        $query = [
+            'sharer_id' => $_SESSION['user_id'],
+        ];
+        $options = [
+            'skip' => ($page - 1) * $pageSize,
+            'limit' => $pageSize,
+        ];
+
+        $images = $this->connection->galery->find($query, $options);
         return $images;
     }
     public function get_max_page_images($pageSize)

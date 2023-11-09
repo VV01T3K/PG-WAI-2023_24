@@ -45,11 +45,6 @@ class Router
 
         include_once Application::$ROOT . "/views/partials/header.php";
 
-        if ($_SESSION['user_id'] ?? false) {
-            echo " <a href='/logout'>Logout</a>";
-            echo "<br><div class='user'>Logged in as: " . $_SESSION['user_login'] . "</div>";
-        }
-
         include_once Application::$ROOT . "/views/$view.php";
 
         include_once Application::$ROOT . "/views/partials/footer.php";

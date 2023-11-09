@@ -63,6 +63,7 @@ class SiteController extends Controller
         $imgDB = [
             'name' => $name,
             'author' => $body['author'],
+            'sherer_id' => $_SESSION['user_id'],
             'title' => $body['title'],
             'visibility' => $body['visibility'] ?? 'public',
         ];

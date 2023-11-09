@@ -19,3 +19,11 @@
 
 <body>
     <a href="/">Back</a>
+
+    <?php if ($_SESSION['user_id'] ?? false): ?>
+        <a href='/logout'>Logout</a>
+        <br>
+        <div class='user'>Logged in as:
+            <?= $_SESSION['user_login'] ?>
+        </div>
+    <?php endif ?>
