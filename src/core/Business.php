@@ -2,7 +2,7 @@
 namespace app\core;
 
 use MongoDB\Client;
-use MongoDB\BSON\ObjectID;
+use MongoDB\BSON\ObjectId;
 
 class Business
 {
@@ -26,18 +26,29 @@ class Business
         $this->connection->galery->insertOne($img);
 
     }
-    public function get_page_images($page, $pageSize)
+    public function get_page_images($page, $pageSize, $params = [false])
     {
-        // jesli null to "" i nie robi
-        $query = [
-            'sharer_id' => $_SESSION['user_id'],
-        ];
+
+        if ($params !== [false]) {
+            $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];
+        } else {
+            $query = [
+                '$or' => [
+                    ['visibility' => 'public'],
+                    [
+                        'visibility' => 'private',
+                        'sharer_id' => ($_SESSION['user_id'] ?? false),
+                    ],
+                ],
+            ];
+        }
         $options = [
             'skip' => ($page - 1) * $pageSize,
             'limit' => $pageSize,
         ];
 
         $images = $this->connection->galery->find($query, $options);
+
         return $images;
     }
     public function get_max_page_images($pageSize)
@@ -60,6 +71,11 @@ class Business
         $this->connection->users->deleteOne($user);
     }
     // utils ⬇️ ---------------------------------------
+    public function oID($string)
+    {
+        $id = new ObjectId($string);
+        return $id;
+    }
     public function get_user($login)
     {
         return $this->connection->users->findOne(['login' => $login]);

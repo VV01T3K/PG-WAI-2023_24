@@ -7,12 +7,22 @@ use app\core\Controller;
 
 class SiteController extends Controller
 {
+    public function save_fav_galery($request)
+    {
+
+        $body = $request->getBody();
+
+        $_SESSION['fav'] = json_decode(html_entity_decode($body['ids']));
+
+        return "Zapisano!";
+    }
 
     public function render_galery($request)
     {
         $page = $request->getBody()['page'] ?? 1;
 
         $max_page = Application::$app->db->get_max_page_images($this->pageSize);
+        $page = $page > $max_page ? $max_page : $page;
         $images = Application::$app->db->get_page_images($page, $this->pageSize);
 
         $params = [
@@ -21,6 +31,21 @@ class SiteController extends Controller
             'max_page' => $max_page,
         ];
         return $this->render('galery', $params);
+    }
+    public function render_favorites($request)
+    {
+        $page = $request->getBody()['page'] ?? 1;
+
+        $max_page = Application::$app->db->get_max_page_images($this->pageSize);
+        $page = $page > $max_page ? $max_page : $page;
+        $images = Application::$app->db->get_page_images($page, $this->pageSize, $_SESSION['fav'] ?? []);
+
+        $params = [
+            'images' => $images,
+            'page' => $page,
+            'max_page' => $max_page,
+        ];
+        return $this->render('favorites', $params);
     }
     public function render_image()
     {
@@ -61,9 +86,9 @@ class SiteController extends Controller
         $this->watermark($path, $watermark);
 
         $imgDB = [
+            'sharer_id' => ($_SESSION['user_id'] ?? false),
             'name' => $name,
             'author' => $body['author'],
-            'sherer_id' => $_SESSION['user_id'],
             'title' => $body['title'],
             'visibility' => $body['visibility'] ?? 'public',
         ];

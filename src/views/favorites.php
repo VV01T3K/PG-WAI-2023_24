@@ -1,5 +1,5 @@
 <main id="galery">
-    <h1>Galery</h1>
+    <h1>Favorites</h1>
 
     <form action="" method="get">
         <input type="number" name="page" value="1" hidden>
@@ -15,11 +15,11 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{ids: save_favs()}' hx-post="/galery_favs" hx-swap="innerHTML" hx-trigger="click"
+    <button id="save" hx-vals='js:{ids: save_favs()}' hx-delete="/galery_favs" hx-swap="innerHTML" hx-trigger="click"
         hx-target="#response">
-        Zapamiętaj wybrane
+        Usuń zaznaczone z zapamiętanych
     </button>
-    <span id="response"></span>
+
     <div id="grid">
         <?php foreach ($images as $image): ?>
             <div class='image'>
@@ -45,5 +45,3 @@
         <?php endforeach ?>
     </div>
 </main>
-
-<script src="static/scripts/galery.js"></script>

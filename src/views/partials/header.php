@@ -15,6 +15,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            color-scheme: dark light;
+        }
+
+        main#galery div#grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            margin: 1rem;
+            gap: 1.5rem;
+        }
+
+        div#grid div {
+            border: 1px solid white;
+            padding: .5rem;
+            width: fit-content;
+            border-radius: .5rem;
+        }
+
+        [name="fav"]:checked {
+            scale: 1.3;
+        }
+    </style>
 </head>
 
 <body>
