@@ -1,2 +1,4 @@
 vendor
 src/web/Images/*/*.png
+src/web/Images/*/*.jpg
+src/web/Images/*/*.jpeg
