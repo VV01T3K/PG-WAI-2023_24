@@ -31,8 +31,7 @@ class Router
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-            http_response_code(404);
-            return $this->renderView("status_404");
+            return $this->renderView(...Application::$app->response->httpCode(404));
         }
         if (is_string($callback)) {
             return $this->renderView($callback);
@@ -47,7 +46,6 @@ class Router
     public function renderView($view, $params = [])
     {
         foreach ($params as $key => $value) {
-            // uses $key(string) as a name for new variable
             $$key = $value;
         }
 

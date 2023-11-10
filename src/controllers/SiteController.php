@@ -47,6 +47,16 @@ class SiteController extends Controller
         ];
         return $this->render('favorites', $params);
     }
+
+    // public function image($request)
+    // {
+    //     if ($request->isGET())
+    //         return $this->render('image');
+
+    //     if ($request->isPOST()) {
+
+    //     }
+    // }
     public function render_image()
     {
         return $this->render('image');

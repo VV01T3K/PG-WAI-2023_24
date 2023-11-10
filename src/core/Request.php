@@ -20,14 +20,16 @@ class Request
     {
         $body = [];
 
-        if ($this->getMethod() === 'get') {
+        if ($this->isHTMX()) {
+            $body = json_decode(file_get_contents('php://input'), true);
+        }
+
+        if ($this->isGET()) {
             foreach ($_GET as $key => $value) {
-                // sanitizing the data
-                // https://www.php.net/manual/en/filter.filters.sanitize.php
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-        if ($this->getMethod() === 'post') {
+        if ($this->isPOST()) {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
@@ -36,4 +38,33 @@ class Request
         return $body;
 
     }
+    public function isPOST()
+    {
+        return $this->getMethod() === 'post';
+    }
+    public function isGET()
+    {
+        return $this->getMethod() === 'get';
+    }
+    public function isHEAD()
+    {
+        return $this->getMethod() === 'head';
+    }
+    public function isPUT()
+    {
+        return $this->getMethod() === 'put';
+    }
+    public function isDELETE()
+    {
+        return $this->getMethod() === 'delete';
+    }
+    public function isPATCH()
+    {
+        return $this->getMethod() === 'patch';
+    }
+    public function isHTMX()
+    {
+        return (strtolower($_SERVER['HTTP_HX_REQUEST'] ?? false) === 'true');
+    }
+
 }

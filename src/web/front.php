@@ -23,13 +23,13 @@ $app->router->post('/galery_favs', [SiteController::class, 'save_fav_galery']);
 
 $app->router->get('/favorites', [SiteController::class, 'render_favorites']);
 
-$app->router->get('/login', [AuthController::class, 'render_login']);
-$app->router->post('/login', [AuthController::class, 'handle_login']);
+$app->router->get('/login', [AuthController::class, 'login']);
+$app->router->post('/login', [AuthController::class, 'login']);
 
-$app->router->get('/register', [AuthController::class, 'render_register']);
-$app->router->post('/register', [AuthController::class, 'handle_register']);
+$app->router->get('/register', [AuthController::class, 'register']);
+$app->router->post('/register', [AuthController::class, 'register']);
 
-$app->router->get('/logout', [AuthController::class, 'handle_logout']);
+$app->router->get('/logout', [AuthController::class, 'logout']);
 
 
 

@@ -14,6 +14,10 @@ class Controller
     {
         return Application::$app->router->renderView($view, $params);
     }
+    public function renderHttpCode(int $code)
+    {
+        return Application::$app->router->renderView(...Application::$app->response->httpCode($code));
+    }
     public function miniaturize($source, $width, $height)
     {
 

@@ -4,64 +4,55 @@ namespace app\controllers;
 
 use app\core\Controller;
 use app\core\Application;
+use app\models\RegisterModel;
+use app\models\LoginModel;
 
 
 class AuthController extends Controller
 {
-    public function render_login()
-    {
-        return $this->render('login');
-    }
-    public function render_register()
-    {
-        return $this->render('register');
-    }
-
-
-    public function handle_login($request)
-    {
-        $body = $request->getBody();
-
-        $DBuser = Application::$app->db->get_user($body['login']);
-
-        if (
-            $DBuser !== null &&
-            password_verify($body['password'], $DBuser['password'])
-        ) {
-            session_regenerate_id();
-            $_SESSION['user_id'] = $DBuser['_id'];
-            $_SESSION['user_login'] = $DBuser['login'];
-            header('Location: /');
-            return "Logged in";
-        } else {
-            return "Wrong login or password";
-        }
-
-    }
-    public function handle_register($request)
-    {
-        $body = $request->getBody();
-
-        if ($body['password'] !== $body['password_confirm']) {
-            return "Passwords don't match";
-        }
-
-        $user = [
-            'login' => $body['login'],
-            'email' => $body['email'],
-            'password' => password_hash($body['password'], PASSWORD_DEFAULT),
-        ];
-
-        Application::$app->db->save_user($user);
-
-        echo $this->handle_login($request);
-
-        return "Registered and logged in";
-    }
-    public function handle_logout()
+    public function logout()
     {
         session_unset();
         session_destroy();
         header('Location: /');
+    }
+    public function login($request)
+    {
+        if ($request->isGET())
+            return $this->render('login');
+
+        if ($request->isPOST()) {
+
+            $LoginModel = new LoginModel();
+            $LoginModel->loadData($request->getBody());
+
+            if ($LoginModel->validate())
+                return $this->render('login', $LoginModel);
+
+            $LoginModel->login();
+            // header('Location: /');
+            return "Logged in";
+        }
+        return $this->renderHttpCode(405);
+    }
+
+    public function register($request)
+    {
+        if ($request->isGET())
+            return $this->render('register');
+
+        if ($request->isPOST()) {
+
+            $registerModel = new RegisterModel();
+            $registerModel->loadData($request->getBody());
+
+            if ($registerModel->validate())
+                return $this->render('register', $registerModel);
+
+            $registerModel->register();
+
+            return "Registered";
+        }
+        return $this->renderHttpCode(405);
     }
 }

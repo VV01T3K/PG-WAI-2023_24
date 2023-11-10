@@ -58,16 +58,10 @@ class Business
     }
     public function save_user($user)
     {
-        if ($this->user_exists($user))
-            return "User already exists";
-
         $this->connection->users->insertOne($user);
     }
     public function delete_user($user)
     {
-        if (!$this->user_exists($user))
-            return "User doesn't exist";
-
         $this->connection->users->deleteOne($user);
     }
     // utils ⬇️ ---------------------------------------
@@ -78,20 +72,19 @@ class Business
     }
     public function get_user($login)
     {
-        return $this->connection->users->findOne(['login' => $login]);
+        return ($this->connection->users->findOne(['login' => $login]));
     }
     public function user_exists($user)
     {
+        $existing_user = NULL;
         if (is_array($user)) {
-            $existing_user = $this->get_user(['login' => $user['login']]);
+            $existing_user = $this->connection->users->findOne(['login' => $user['login']]);
         } else {
-            $existing_user = $this->get_user(['login' => $user]);
+            $existing_user = $this->connection->users->findOne(['login' => $user]);
         }
-        if ($existing_user === null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
+        return $existing_user ? true : false;
+
+
+    }
 }

@@ -13,8 +13,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Merriweather" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- <script src="script.js" defer></script> -->
     <style>
         * {
             box-sizing: border-box;

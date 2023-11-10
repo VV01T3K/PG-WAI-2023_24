@@ -8,6 +8,7 @@ class Application
     public $router;
     public $db;
     public $request;
+    public $response;
     public function __construct($root)
     {
         self::$app = $this;
@@ -15,6 +16,7 @@ class Application
         $this->request = new Request();
         $this->router = new Router($this->request);
         $this->db = new Business();
+        $this->response = new Response();
     }
     public function run()
     {
