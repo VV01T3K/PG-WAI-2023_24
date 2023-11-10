@@ -29,7 +29,7 @@ class SiteController extends Controller
 
             return "Zapisano!";
         }
-        // return $this->renderHttpCode(405);
+        return $this->renderHttpCode(405);
     }
     public function favorites($request)
     {
@@ -42,22 +42,7 @@ class SiteController extends Controller
 
             return $this->render('favorites', $galleryPage);
         }
-    }
-
-    public function render_favorites($request)
-    {
-        $page = $request->getBody()['page'] ?? 1;
-
-        $max_page = Application::$app->db->get_max_page_images($this->pageSize);
-        $page = $page > $max_page ? $max_page : $page;
-        $images = Application::$app->db->get_page_images($page, $this->pageSize, $_SESSION['fav'] ?? []);
-
-        $params = [
-            'images' => $images,
-            'page' => $page,
-            'max_page' => $max_page,
-        ];
-        return $this->render('favorites', $params);
+        return $this->renderHttpCode(405);
     }
     public function image($request)
     {
