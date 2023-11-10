@@ -11,6 +11,7 @@
         <li><a href="image">image</a></li>
         <li><a href="gallery">gallery</a></li>
         <li><a href="favorites">favorites</a></li>
+        <li><a href="search">favorites</a></li>
         <br>
         <?php if ($_SESSION['user_id'] ?? false): ?>
             <li><a href='logout'>logout</a></li>

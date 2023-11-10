@@ -19,4 +19,6 @@
             <label>Publiczne<input type="radio" name="visibility" value="public" checked required></label>
         <?php endif ?>
     </form>
+    <br>
+    <?= $msg ?? '' ?>
 </main>

@@ -30,8 +30,8 @@ class AuthController extends Controller
                 return $this->render('login', $loginModel);
 
             $loginModel->login();
-            // header('Location: /');
-            return "Logged in";
+
+            return $this->render('login', ['msg' => "Logged in"]);
         }
         return $this->renderHttpCode(405);
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
 
             $registerModel->register();
 
-            return "Registered";
+            return $this->render('register', ['msg' => "Registered"]);
         }
         return $this->renderHttpCode(405);
     }

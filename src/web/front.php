@@ -19,9 +19,9 @@ $app->router->post('/image', [SiteController::class, 'image']);
 
 $app->router->get('/gallery', [SiteController::class, 'gallery']);
 $app->router->post('/gallery', [SiteController::class, 'gallery']);
-// $app->router->delete('/gallery_favs', [SiteController::class, 'delete_fav_gallery']);
 
 $app->router->get('/favorites', [SiteController::class, 'favorites']);
+$app->router->delete('/favorites', [SiteController::class, 'favorites']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);

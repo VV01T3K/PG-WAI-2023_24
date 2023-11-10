@@ -1,7 +1,7 @@
 //
 const button = document.querySelector("#save");
 
-function save_favs() {
+function favs() {
     const favs = document.querySelectorAll('[name="fav"]:checked');
     const favsArray = [...favs];
     const favsIds = favsArray.map((fav) => fav.value);

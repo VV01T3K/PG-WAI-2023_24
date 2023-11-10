@@ -42,6 +42,18 @@ class SiteController extends Controller
 
             return $this->render('favorites', $galleryPage);
         }
+        if ($request->isHTMX() && $request->isDELETE()) {
+            $body = $request->getBody();
+
+
+            $_SESSION['fav'] = array_diff(array($_SESSION['fav']), Controller::readHxPayload($body) ?? []);
+
+            echo "<pre>";
+            var_dump($_SESSION['fav']);
+            echo "</pre>";
+
+            return "Usunięto!";
+        }
         return $this->renderHttpCode(405);
     }
     public function image($request)
@@ -62,8 +74,7 @@ class SiteController extends Controller
 
             $imageModel->process();
 
-            return "Images are ready!!";
-
+            return $this->render('image', ['msg' => "Images are ready!!"]);
         }
         return $this->renderHttpCode(405);
     }

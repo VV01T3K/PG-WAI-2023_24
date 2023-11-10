@@ -28,6 +28,9 @@ class Business
     }
     public function get_page_images($page, $pageSize, $params = [false])
     {
+        echo "<pre>";
+        var_dump($params);
+        echo "</pre>";
 
         if ($params !== [false]) {
             $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];

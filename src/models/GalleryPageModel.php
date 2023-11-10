@@ -9,7 +9,7 @@ class GalleryPageModel
     public $page = 1;
     public $max_page;
     public $images = [];
-    private $pageSize = 5;
+    private $pageSize = 10;
     public function __construct($pageNumber)
     {
         $this->max_page = Application::$app->db->get_max_page_images($this->pageSize);

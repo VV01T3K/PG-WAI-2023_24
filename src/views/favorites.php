@@ -15,11 +15,11 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{payload: save_favs()}' hx-delete="/gallery_favs" hx-swap="innerHTML"
-        hx-trigger="click" hx-target="#response">
+    <button id="save" hx-vals='js:{payload: favs()}' hx-delete="/favorites" hx-swap="innerHTML" hx-trigger="click"
+        hx-target="#response">
         Usuń zaznaczone z zapamiętanych
     </button>
-
+    <span id="response"></span>
     <div id="grid">
         <?php foreach ($images as $image): ?>
             <div class='image'>
@@ -45,3 +45,5 @@
         <?php endforeach ?>
     </div>
 </main>
+
+<script defer src="static/scripts/gallery.js"></script>

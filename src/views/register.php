@@ -23,4 +23,6 @@
         <br>
         <input type="submit" value="Send">
     </form>
+    <br>
+    <?= $msg ?? '' ?>
 </main>
