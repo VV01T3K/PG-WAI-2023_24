@@ -18,7 +18,7 @@ $app->router->get('/image', [SiteController::class, 'image']);
 $app->router->post('/image', [SiteController::class, 'image']);
 
 $app->router->get('/gallery', [SiteController::class, 'gallery']);
-$app->router->post('/gallery_favs', [SiteController::class, 'save_fav_gallery']);
+$app->router->post('/gallery', [SiteController::class, 'gallery']);
 // $app->router->delete('/gallery_favs', [SiteController::class, 'delete_fav_gallery']);
 
 $app->router->get('/favorites', [SiteController::class, 'render_favorites']);

@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\models\ImageModel;
-use app\models\ModelGalleryPage;
+use app\models\GalleryPageModel;
 
 class SiteController extends Controller
 {
@@ -15,26 +15,35 @@ class SiteController extends Controller
 
             $pageNumber = $request->getBody()['page'] ?? 1;
 
-            $galleryPage = new ModelGalleryPage();
-            $galleryPage->setPage($pageNumber);
+            $galleryPage = new GalleryPageModel($pageNumber);
             $galleryPage->getImages();
 
             return $this->render('gallery', $galleryPage);
         }
 
-        if ($request->isPOST()) {
+        if ($request->isHTMX() && $request->isPOST()) {
 
+            $body = $request->getBody();
+
+            $_SESSION['fav'] = Controller::readHxPayload($body);
+
+            return "Zapisano!";
+        }
+        // return $this->renderHttpCode(405);
+    }
+    public function favorites($request)
+    {
+        if ($request->isGET()) {
+
+            $pageNumber = $request->getBody()['page'] ?? 1;
+
+            $galleryPage = new GalleryPageModel($pageNumber);
+            $galleryPage->getFavoriteImages();
+
+            return $this->render('favorites', $galleryPage);
         }
     }
-    public function save_fav_gallery($request)
-    {
 
-        $body = $request->getBody();
-
-        $_SESSION['fav'] = json_decode(html_entity_decode($body['ids']));
-
-        return "Zapisano!";
-    }
     public function render_favorites($request)
     {
         $page = $request->getBody()['page'] ?? 1;
@@ -50,7 +59,6 @@ class SiteController extends Controller
         ];
         return $this->render('favorites', $params);
     }
-
     public function image($request)
     {
         if ($request->isGET())
@@ -74,7 +82,6 @@ class SiteController extends Controller
         }
         return $this->renderHttpCode(405);
     }
-
     public function home()
     {
         $params = [
