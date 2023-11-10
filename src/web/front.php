@@ -17,9 +17,9 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/image', [SiteController::class, 'image']);
 $app->router->post('/image', [SiteController::class, 'image']);
 
-$app->router->get('/galery', [SiteController::class, 'render_galery']);
-$app->router->post('/galery_favs', [SiteController::class, 'save_fav_galery']);
-// $app->router->delete('/galery_favs', [SiteController::class, 'delete_fav_galery']);
+$app->router->get('/gallery', [SiteController::class, 'gallery']);
+$app->router->post('/gallery_favs', [SiteController::class, 'save_fav_gallery']);
+// $app->router->delete('/gallery_favs', [SiteController::class, 'delete_fav_gallery']);
 
 $app->router->get('/favorites', [SiteController::class, 'render_favorites']);
 

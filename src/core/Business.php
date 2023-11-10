@@ -23,7 +23,7 @@ class Business
     public function save_image($img)
     {
 
-        $this->connection->galery->insertOne($img);
+        $this->connection->gallery->insertOne($img);
 
     }
     public function get_page_images($page, $pageSize, $params = [false])
@@ -47,13 +47,13 @@ class Business
             'limit' => $pageSize,
         ];
 
-        $images = $this->connection->galery->find($query, $options);
+        $images = $this->connection->gallery->find($query, $options);
 
         return $images;
     }
     public function get_max_page_images($pageSize)
     {
-        $count = $this->connection->galery->count();
+        $count = $this->connection->gallery->count();
         return ceil($count / $pageSize);
     }
     public function save_user($user)

@@ -1,5 +1,5 @@
-<main id="galery">
-    <h1>Galery</h1>
+<main id="gallery">
+    <h1>gallery</h1>
 
     <form action="" method="get">
         <input type="number" name="page" value="1" hidden>
@@ -15,7 +15,7 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{payload: save_favs()}' hx-post="/galery_favs" hx-swap="innerHTML" hx-trigger="click"
+    <button id="save" hx-vals='js:{payload: save_favs()}' hx-post="/gallery_favs" hx-swap="innerHTML" hx-trigger="click"
         hx-target="#response">
         Zapamiętaj wybrane
     </button>
@@ -46,4 +46,4 @@
     </div>
 </main>
 
-<script src="static/scripts/galery.js"></script>
+<script src="static/scripts/gallery.js"></script>

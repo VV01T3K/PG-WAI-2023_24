@@ -23,13 +23,13 @@ class AuthController extends Controller
 
         if ($request->isPOST()) {
 
-            $LoginModel = new LoginModel();
-            $LoginModel->loadData($request->getBody());
+            $loginModel = new LoginModel();
+            $loginModel->loadData($request->getBody());
 
-            if ($LoginModel->validate())
-                return $this->render('login', $LoginModel);
+            if ($loginModel->validate())
+                return $this->render('login', $loginModel);
 
-            $LoginModel->login();
+            $loginModel->login();
             // header('Location: /');
             return "Logged in";
         }

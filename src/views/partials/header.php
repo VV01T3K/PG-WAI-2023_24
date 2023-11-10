@@ -21,7 +21,7 @@
             color-scheme: dark light;
         }
 
-        main#galery div#grid {
+        main#gallery div#grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             margin: 1rem;

@@ -9,7 +9,7 @@
     <ul>
         <li><a href="/">home</a></li>
         <li><a href="image">image</a></li>
-        <li><a href="galery">galery</a></li>
+        <li><a href="gallery">gallery</a></li>
         <li><a href="favorites">favorites</a></li>
         <br>
         <?php if ($_SESSION['user_id'] ?? false): ?>

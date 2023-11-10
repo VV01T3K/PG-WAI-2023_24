@@ -1,4 +1,4 @@
-<main id="galery">
+<main id="gallery">
     <h1>Favorites</h1>
 
     <form action="" method="get">
@@ -15,7 +15,7 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{ids: save_favs()}' hx-delete="/galery_favs" hx-swap="innerHTML" hx-trigger="click"
+    <button id="save" hx-vals='js:{ids: save_favs()}' hx-delete="/gallery_favs" hx-swap="innerHTML" hx-trigger="click"
         hx-target="#response">
         Usuń zaznaczone z zapamiętanych
     </button>
