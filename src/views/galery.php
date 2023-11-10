@@ -15,7 +15,7 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{ids: save_favs()}' hx-post="/galery_favs" hx-swap="innerHTML" hx-trigger="click"
+    <button id="save" hx-vals='js:{payload: save_favs()}' hx-post="/galery_favs" hx-swap="innerHTML" hx-trigger="click"
         hx-target="#response">
         Zapamiętaj wybrane
     </button>

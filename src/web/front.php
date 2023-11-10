@@ -11,11 +11,11 @@ session_start();
 $app = new Application(dirname(__DIR__));
 
 
-$app->router->get('/', [SiteController::class, 'render_home']);
+$app->router->get('/', [SiteController::class, 'home']);
 
 
-$app->router->get('/image', [SiteController::class, 'render_image']);
-$app->router->post('/image', [SiteController::class, 'handle_image']);
+$app->router->get('/image', [SiteController::class, 'image']);
+$app->router->post('/image', [SiteController::class, 'image']);
 
 $app->router->get('/galery', [SiteController::class, 'render_galery']);
 $app->router->post('/galery_favs', [SiteController::class, 'save_fav_galery']);

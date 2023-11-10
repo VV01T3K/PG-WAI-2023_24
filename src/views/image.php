@@ -1,6 +1,10 @@
 <main>
     <h1>image</h1>
 
+    <?php
+    print_r($errors ?? false);
+    ?>
+
     <form method="post" enctype="multipart/form-data">
         <input type="file" name="img" />
         <input type="text" name="watermark" placeholder="Znak wodny" required>

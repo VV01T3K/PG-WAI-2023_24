@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\models\ImageModel;
 
 class SiteController extends Controller
 {
@@ -48,97 +49,35 @@ class SiteController extends Controller
         return $this->render('favorites', $params);
     }
 
-    // public function image($request)
-    // {
-    //     if ($request->isGET())
-    //         return $this->render('image');
-
-    //     if ($request->isPOST()) {
-
-    //     }
-    // }
-    public function render_image()
+    public function image($request)
     {
-        return $this->render('image');
-    }
-    public function handle_image($request)
-    {
-        $body = $request->getBody();
-        $watermark = $body['watermark'];
+        if ($request->isGET())
+            return $this->render('image');
 
-        $img = $_FILES['img'];
-        $tmp_path = $img['tmp_name'];
+        if ($request->isPOST()) {
 
-        $name = basename($img['name']);
-        $type = mime_content_type($tmp_path);
-        $size = $img['size'];
+            $imageModel = new ImageModel();
+            $imageModel->loadData($request->getBody());
+            $imageModel->loadImage($_FILES['img']);
 
-        // chciałem użyć finfo_open() ale nie działało
-        // $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        // expected type 'finfo'. Found 'resource|false'.
+            if ($imageModel->validate())
+                return $this->render('image', $imageModel);
 
-        // if ($size > 500000)
-        //     return "Plik jest za duży!";
+            $imageModel->save();
 
+            $imageModel->process();
 
-        if ($size > 1000000)
-            return "Plik jest za duży!";
+            return "Images are ready!!";
 
-        if (!in_array($type, $this->valid_types))
-            return "Nieprawidłowy format pliku!";
-
-
-        $path = Application::$ROOT . "/web/Images/original/$name";
-        if (!move_uploaded_file($tmp_path, $path))
-            return "Błąd przy przesyłaniu danych!";
-
-        $this->miniaturize($path, 200, 125);
-        $this->watermark($path, $watermark);
-
-        $imgDB = [
-            'sharer_id' => ($_SESSION['user_id'] ?? false),
-            'name' => $name,
-            'author' => $body['author'],
-            'title' => $body['title'],
-            'visibility' => $body['visibility'] ?? 'public',
-        ];
-
-        Application::$app->db->save_image($imgDB);
-
-
-        return "Upload przebiegł pomyślnie!";
-
-
+        }
+        return $this->renderHttpCode(405);
     }
 
-    public function render_home()
+    public function home()
     {
         $params = [
             'powitanie' => "Serdecznie"
         ];
         return $this->render('home', $params);
     }
-
-
-    // public function form()
-    // {
-    //     return $this->render('form');
-    // }
-    // public function handleForm($request)
-    // {
-    //     $body = $request->getBody();
-    //     echo '<pre>';
-    //     var_dump($body);
-    //     echo '</pre>';
-    //     return "Handling submitted form";
-    // }
-    // public function handleAdd($request)
-    // {
-    //     $product = $request->getBody();
-
-    //     Application::$app->db->save_product($product);
-
-    //     return "inserted";
-    // }
-
 }
