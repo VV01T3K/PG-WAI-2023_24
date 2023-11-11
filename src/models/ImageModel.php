@@ -38,7 +38,8 @@ class ImageModel extends Model
 
         $imgDB = [
             'sharer_id' => ($_SESSION['user_id'] ?? false),
-            'name' => $this->name,
+            'file_name' => $this->name,
+            'name' => pathinfo($this->name, PATHINFO_FILENAME),
             'author' => $this->author,
             'title' => $this->title,
             'visibility' => $this->visibility,

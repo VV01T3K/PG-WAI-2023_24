@@ -23,4 +23,10 @@ class GalleryPageModel
     {
         $this->images = Application::$app->db->get_page_images($this->page, $this->pageSize, $_SESSION['fav'] ?? []);
     }
+    public function getMatchingImages($phrase)
+    {
+        $this->images = Application::$app->db->search_images($phrase);
+        if ($this->images == NULL)
+            return false;
+    }
 }

@@ -15,7 +15,7 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{payload: favs()}' hx-delete="/favorites" hx-swap="innerHTML" hx-trigger="click"
+    <button id="save" hx-vals='js:{payload: add_favs()}' hx-post="/favorites" hx-swap="innerHTML" hx-trigger="click"
         hx-target="#response">
         Usuń zaznaczone z zapamiętanych
     </button>
@@ -23,16 +23,14 @@
     <div id="grid">
         <?php foreach ($images as $image): ?>
             <div class='image'>
-                <a href="Images/watermark/watermarked_<?= $image['name'] ?>">
-                    <img src="/Images/thumbnails/mini_<?= $image['name'] ?>" alt="">
+                <a href="Images/watermark/watermarked_<?= $image['file_name'] ?>">
+                    <img src="/Images/thumbnails/mini_<?= $image['file_name'] ?>" alt="">
                 </a>
                 <p>
                     Widoczność:
                     <?= $image['visibility'] ?>
                     <input type="checkbox" name="fav" <?php
                     echo "value='$image[_id]'";
-                    if (in_array($image['_id'], $_SESSION['fav'] ?? []))
-                        echo 'checked';
                     ?>>
 
                     <br>

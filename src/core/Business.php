@@ -22,17 +22,11 @@ class Business
 
     public function save_image($img)
     {
-
         $this->connection->gallery->insertOne($img);
-
     }
-    public function get_page_images($page, $pageSize, $params = [false])
+    public function get_page_images($page, $pageSize, $params = false)
     {
-        echo "<pre>";
-        var_dump($params);
-        echo "</pre>";
-
-        if ($params !== [false]) {
+        if (is_array($params)) {
             $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];
         } else {
             $query = [
@@ -49,6 +43,40 @@ class Business
             'skip' => ($page - 1) * $pageSize,
             'limit' => $pageSize,
         ];
+
+        $images = $this->connection->gallery->find($query, $options);
+
+        return $images;
+    }
+    public function search_images($phrase)
+    {
+        $query = [
+            '$and' => [
+                [
+                    '$or' => [
+                        ['visibility' => 'public'],
+                        [
+                            'visibility' => 'private',
+                            'sharer_id' => ($_SESSION['user_id'] ?? false),
+                        ],
+                    ],
+                ],
+                [
+                    '$or' => [
+                        ['name' => ['$regex' => $phrase, '$options' => 'i']],
+                        ['author' => ['$regex' => $phrase, '$options' => 'i']],
+                        ['title' => ['$regex' => $phrase, '$options' => 'i']],
+                    ],
+                ],
+            ],
+        ];
+
+        $options = [
+            'limit' => 10,
+        ];
+
+        if ($this->connection->gallery->count($query, $options) == 0)
+            return NULL;
 
         $images = $this->connection->gallery->find($query, $options);
 

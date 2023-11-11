@@ -51,6 +51,14 @@ class Router
 
         include_once Application::$ROOT . "/views/partials/footer.php";
     }
+    public function renderPartialView($view, $params = [])
+    {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+
+        include_once Application::$ROOT . "/views/partials/$view.php";
+    }
 
 
 }

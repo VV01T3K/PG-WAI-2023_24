@@ -31,6 +31,10 @@
         [name="fav"]:checked {
             scale: 1.3;
         }
+
+        #response:empty {
+            display: none;
+        }
     </style>
 </head>
 

@@ -38,19 +38,24 @@ class SiteController extends Controller
             $pageNumber = $request->getBody()['page'] ?? 1;
 
             $galleryPage = new GalleryPageModel($pageNumber);
+
             $galleryPage->getFavoriteImages();
 
             return $this->render('favorites', $galleryPage);
         }
-        if ($request->isHTMX() && $request->isDELETE()) {
+        if ($request->isHTMX() && $request->isPOST()) {
+
             $body = $request->getBody();
 
-
-            $_SESSION['fav'] = array_diff(array($_SESSION['fav']), Controller::readHxPayload($body) ?? []);
-
-            echo "<pre>";
-            var_dump($_SESSION['fav']);
-            echo "</pre>";
+            $_SESSION['fav'] =
+                // porządkuje indeksy tablicy
+                array_values(
+                    // usuwa z tablicy elementy z drugiej tablicy
+                    array_diff(
+                        $_SESSION['fav'],
+                        Controller::readHxPayload($body) ?? []
+                    )
+                );
 
             return "Usunięto!";
         }
@@ -84,5 +89,27 @@ class SiteController extends Controller
             'powitanie' => "Serdecznie"
         ];
         return $this->render('home', $params);
+    }
+    public function search($request)
+    {
+        if ($request->isGET())
+            return $this->render('search');
+
+        if ($request->isHTMX() && $request->isPOST()) {
+
+
+            $phrase = $request->getBody()['phrase'] ?? "";
+
+            if (empty($phrase))
+                return "Brak frazy do wyszukania!";
+
+            $galleryPage = new GalleryPageModel(1);
+
+            if ($galleryPage->getMatchingImages($phrase) === false)
+                return "Brak wyników wyszukiwania!";
+
+            return $this->renderPartial('galleryPage', $galleryPage);
+        }
+        return $this->renderHttpCode(405);
     }
 }
