@@ -9,6 +9,7 @@ class GalleryPageModel
     public $page = 1;
     public $max_page;
     public $images = [];
+    public $msg = "";
     private $pageSize = 10;
     public function __construct($pageNumber)
     {
@@ -18,6 +19,10 @@ class GalleryPageModel
     public function getImages()
     {
         $this->images = Application::$app->db->getGalleryPage($this->page, $this->pageSize);
+        if ($this->page == 0) {
+            $this->images = [];
+            $this->msg = "Brak obrazów w galerii!";
+        }
     }
     public function getFavoriteImages()
     {
@@ -25,8 +30,16 @@ class GalleryPageModel
     }
     public function getMatchingImages($phrase)
     {
-        $this->images = Application::$app->db->searchImages($phrase);
-        if ($this->images == NULL)
-            return false;
+        if (!empty($phrase)) {
+            $this->images = Application::$app->db->searchImages($phrase);
+            if ($this->images == NULL) {
+                $this->images = [];
+                $this->msg = "Brak wyników wyszukiwania!";
+            }
+        } else {
+            $this->msg = "Brak frazy do wyszukania!";
+        }
+
+
     }
 }

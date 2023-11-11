@@ -1,5 +1,6 @@
 <main id="gallery">
     <div id="grid">
+        <?= $msg ?? "" ?>
         <?php foreach ($images as $image): ?>
             <div class='image'>
                 <a href="Images/watermark/watermarked_<?= $image['file_name'] ?>">

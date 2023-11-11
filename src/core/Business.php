@@ -33,6 +33,9 @@ class Business
     }
     public function getGalleryPage($page, $pageSize, $params = false)
     {
+        if ($page < 1)
+            $page = 1;
+
         if (is_array($params)) {
             $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];
         } else {

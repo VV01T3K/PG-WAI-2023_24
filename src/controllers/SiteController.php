@@ -78,7 +78,7 @@ class SiteController extends Controller
 
             $imageModel->process();
 
-            return $this->render('image', ['msg' => "Images are ready!!"]);
+            return $this->render('image', ['msg' => "Finished sending and processing image!!"]);
         }
         return $this->renderHttpCode(405);
     }
@@ -96,19 +96,15 @@ class SiteController extends Controller
 
             $phrase = $request->getBody()['phrase'] ?? "";
 
-            if (empty($phrase))
-                return "Brak frazy do wyszukania!";
-
             $galleryPage = new GalleryPageModel(1);
 
-            if ($galleryPage->getMatchingImages($phrase) === false)
-                return "Brak wyników wyszukiwania!";
+            $galleryPage->getMatchingImages($phrase);
 
             return $this->renderPartial('/partials/galleryPage', $galleryPage);
         }
 
         if ($request->isGET())
-            return $this->render('search');
+            return $this->render('search', ['msg' => "Brak frazy do wyszukania!"]);
 
         return $this->renderHttpCode(405);
     }
