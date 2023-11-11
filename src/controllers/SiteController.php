@@ -108,7 +108,7 @@ class SiteController extends Controller
             if ($galleryPage->getMatchingImages($phrase) === false)
                 return "Brak wyników wyszukiwania!";
 
-            return $this->renderPartial('galleryPage', $galleryPage);
+            return $this->renderPartial('/partials/galleryPage', $galleryPage);
         }
         return $this->renderHttpCode(405);
     }
