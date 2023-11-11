@@ -58,8 +58,10 @@ class Business
 
         return $images;
     }
-    public function searchImages($phrase)
+    public function searchImages($page, $pageSize, $phrase)
     {
+        if ($page < 1)
+            $page = 1;
         $query = [
             '$and' => [
                 [
@@ -73,8 +75,8 @@ class Business
                 ],
                 [
                     '$or' => [
-                        ['name' => ['$regex' => $phrase, '$options' => 'i']],
-                        ['author' => ['$regex' => $phrase, '$options' => 'i']],
+                        // ['name' => ['$regex' => $phrase, '$options' => 'i']],
+                        // ['author' => ['$regex' => $phrase, '$options' => 'i']],
                         ['title' => ['$regex' => $phrase, '$options' => 'i']],
                     ],
                 ],
@@ -82,6 +84,7 @@ class Business
         ];
 
         $options = [
+            'skip' => ($page - 1) * $pageSize,
             'limit' => 10,
         ];
 

@@ -21,9 +21,9 @@ class ImageModel extends Model
     public $type;
     public $tmp_path;
     public $size;
-    public $thumb;
 
     public $path;
+    private $unique_name;
 
     public function process()
     {
@@ -32,13 +32,17 @@ class ImageModel extends Model
     }
     public function save()
     {
-        $this->path = Application::$ROOT . "/web/Images/original/" . $this->name;
+        $uniqueID = uniqid('', true);
+
+        $this->unique_name = $uniqueID . "." . pathinfo($this->name, PATHINFO_EXTENSION);
+
+        $this->path = Application::$ROOT . "/web/Images/original/" . $this->unique_name;
         if (!move_uploaded_file($this->tmp_path, $this->path))
             return "Błąd przy przesyłaniu danych!";
 
         $imgDB = [
             'sharer_id' => ($_SESSION['user_id'] ?? false),
-            'file_name' => $this->name,
+            'file_name' => $this->unique_name,
             'name' => pathinfo($this->name, PATHINFO_FILENAME),
             'author' => $this->author,
             'title' => $this->title,
@@ -66,8 +70,7 @@ class ImageModel extends Model
     }
     public function miniaturize($width, $height)
     {
-
-        $path = Application::$ROOT . "/web/Images/thumbnails/mini_$this->name";
+        $path = Application::$ROOT . "/web/Images/thumbnail/$this->unique_name";
 
         if ($this->type == 'image/png')
             $img = imagecreatefrompng($this->path);
@@ -85,7 +88,7 @@ class ImageModel extends Model
     }
     public function watermark()
     {
-        $path = Application::$ROOT . "/web/Images/watermark/watermarked_$this->name";
+        $path = Application::$ROOT . "/web/Images/watermark/$this->unique_name";
 
         if ($this->type == 'image/png')
             $img = imagecreatefrompng($this->path);

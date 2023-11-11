@@ -20,6 +20,16 @@ class Application
     }
     public function run()
     {
+
+        $this->makeDir("Images");
+        $this->makeDir("Images/original");
+        $this->makeDir("Images/thumbnail");
+        $this->makeDir("Images/watermark");
+
         echo $this->router->resolve();
+    }
+    private function makeDir($path)
+    {
+        return is_dir($path) || mkdir($path);
     }
 }

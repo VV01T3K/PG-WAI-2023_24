@@ -6,7 +6,7 @@
         <input type="submit" value="First page (1)">
     </form>
     <form action="" method="get">
-        <input type="number" name="page" max="<?= $max_page ?>" id="page" value="<?= $page ?>">
+        <input type="number" name="page" min="1" max="<?= $max_page ?>" id="page" value="<?= $page ?>">
         <input type="submit" value="Go to page">
     </form>
     <form action="" method="get">
@@ -22,8 +22,8 @@
     <div id="grid">
         <?php foreach ($images as $image): ?>
             <div class='image'>
-                <a href="Images/watermark/watermarked_<?= $image['file_name'] ?>">
-                    <img src="/Images/thumbnails/mini_<?= $image['file_name'] ?>" alt="">
+                <a href="Images/watermark/<?= $image['file_name'] ?>">
+                    <img src="/Images/thumbnail/<?= $image['file_name'] ?>" alt="">
                 </a>
                 <p>
                     Widoczność:

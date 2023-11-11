@@ -22,6 +22,11 @@ class RegisterModel extends Model
         ];
 
         Application::$app->db->saveUser($user);
+
+        $user = Application::$app->db->getUser($this->login);
+        session_regenerate_id();
+        $_SESSION['user_id'] = $user['_id'];
+        $_SESSION['user_login'] = $user['login'];
     }
 
     public function validate()

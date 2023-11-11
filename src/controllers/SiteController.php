@@ -15,7 +15,14 @@ class SiteController extends Controller
 
             $body = $request->getBody();
 
-            $_SESSION['fav'] = $body;
+            if (!isset($_SESSION['fav']))
+                $_SESSION['fav'] = [];
+
+            foreach ($body as $item) {
+                if (!in_array($item, $_SESSION['fav'])) {
+                    $_SESSION['fav'][] = $item;
+                }
+            }
 
             return "Zapisano!";
         }

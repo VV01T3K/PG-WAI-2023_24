@@ -31,7 +31,7 @@ class GalleryPageModel
     public function getMatchingImages($phrase)
     {
         if (!empty($phrase)) {
-            $this->images = Application::$app->db->searchImages($phrase);
+            $this->images = Application::$app->db->searchImages($this->page, $this->pageSize, $phrase);
             if ($this->images == NULL) {
                 $this->images = [];
                 $this->msg = "Brak wyników wyszukiwania!";

@@ -17,9 +17,7 @@ class LoginModel extends Model
         session_regenerate_id();
         $_SESSION['user_id'] = $this->user['_id'];
         $_SESSION['user_login'] = $this->user['login'];
-
     }
-
     public function validate()
     {
         if (empty($this->login))
