@@ -25,7 +25,7 @@ class LoginModel extends Model
         if (empty($this->login))
             $this->errors += ['login' => "Login empty"];
 
-        if (!Application::$app->db->user_exists($this->login)) {
+        if (!Application::$app->db->userExists($this->login)) {
             $this->errors += ['login' => "User doesn't exist"];
         } else {
             $this->user = Application::$app->db->get_user($this->login);

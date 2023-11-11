@@ -18,6 +18,13 @@ class Business
             ]
         );
         $this->connection = $client->wai;
+
+        if (!$this->collectionExists('users')) {
+            $this->connection->createCollection('users');
+        }
+        if (!$this->collectionExists('gallery')) {
+            $this->connection->createCollection('gallery');
+        }
     }
 
     public function save_image($img)
@@ -105,7 +112,7 @@ class Business
     {
         return ($this->connection->users->findOne(['login' => $login]));
     }
-    public function user_exists($user)
+    public function userExists($user)
     {
         $existing_user = NULL;
         if (is_array($user)) {
@@ -115,7 +122,15 @@ class Business
         }
 
         return $existing_user ? true : false;
-
-
+    }
+    public function collectionExists($collectionName)
+    {
+        $collections = $this->connection->listCollections();
+        foreach ($collections as $collection) {
+            if ($collection->getName() == $collectionName) {
+                return true;
+            }
+        }
+        return false;
     }
 }

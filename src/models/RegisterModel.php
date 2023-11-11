@@ -29,7 +29,7 @@ class RegisterModel extends Model
         if (empty($this->login))
             $this->errors += ['login' => "Login empty"];
 
-        if (Application::$app->db->user_exists($this->login))
+        if (Application::$app->db->userExists($this->login))
             $this->errors += ['login' => "Login is taken"];
 
         if (empty($this->email))
