@@ -33,9 +33,6 @@ class Business
     }
     public function getGalleryPage($page, $pageSize, $params = false)
     {
-        if ($page < 1)
-            $page = 1;
-
         if (is_array($params)) {
             $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];
         } else {
@@ -49,6 +46,11 @@ class Business
                 ],
             ];
         }
+
+        $max_page = $this->getMaxPage($pageSize, $query);
+        $page = $page > $max_page ? $max_page : $page;
+        $page = $page < 1 ? 1 : $page;
+
         $options = [
             'skip' => ($page - 1) * $pageSize,
             'limit' => $pageSize,
@@ -56,7 +58,7 @@ class Business
 
         $images = $this->connection->gallery->find($query, $options);
 
-        return $images;
+        return [$images, $max_page];
     }
     public function searchImages($page, $pageSize, $phrase)
     {
@@ -83,6 +85,10 @@ class Business
             ],
         ];
 
+        $max_page = $this->getMaxPage($pageSize, $query);
+        $page = $page > $max_page ? $max_page : $page;
+        $page = $page < 1 ? 1 : $page;
+
         $options = [
             'skip' => ($page - 1) * $pageSize,
             'limit' => 10,
@@ -93,12 +99,7 @@ class Business
 
         $images = $this->connection->gallery->find($query, $options);
 
-        return $images;
-    }
-    public function getMaxGalleryPage($pageSize)
-    {
-        $count = $this->connection->gallery->count();
-        return ceil($count / $pageSize);
+        return [$images, $max_page];
     }
     public function saveUser($user)
     {
@@ -109,6 +110,11 @@ class Business
         $this->connection->users->deleteOne($user);
     }
     // utils ⬇️ ---------------------------------------
+    public function getMaxPage($pageSize, $query = [])
+    {
+        $count = $this->connection->gallery->count($query);
+        return ceil($count / $pageSize);
+    }
     public function oID($string)
     {
         $id = new ObjectId($string);

@@ -102,12 +102,13 @@ class SiteController extends Controller
         if ($request->isHTMX() && $request->isPOST()) {
 
             $phrase = $request->getBody()['phrase'] ?? "";
+            $pageNumber = $request->getBody()['page'] ?? 1;
 
-            $galleryPage = new GalleryPageModel(1);
+            $galleryPage = new GalleryPageModel($pageNumber);
 
             $galleryPage->getMatchingImages($phrase);
 
-            return $this->renderPartial('/partials/galleryPage', $galleryPage);
+            return $this->renderPartial('/partials/searchGalleryPage', $galleryPage);
         }
 
         if ($request->isGET())
