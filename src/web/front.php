@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '../../config.php';
 
 use app\core\Application;
 use app\controllers\SiteController;
@@ -8,7 +9,7 @@ use app\controllers\AuthController;
 
 session_start();
 
-$app = new Application(dirname(__DIR__));
+$app = new Application(dirname(__DIR__), $CONFIG);
 
 
 $app->router->get('/', [SiteController::class, 'home']);

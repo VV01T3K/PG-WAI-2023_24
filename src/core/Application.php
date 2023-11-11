@@ -9,8 +9,30 @@ class Application
     public $db;
     public $request;
     public $response;
-    public function __construct($root)
+    public static $PAGE_SIZE;
+    public static $DB_HOST;
+    public static $DB_USER;
+    public static $DB_PASS;
+
+    public function __construct($root, $CONFIG = [])
     {
+        if (!isset($CONFIG['DB_HOST'])) {
+            echo ("DB_HOST not set in config");
+            exit;
+        }
+        if (!isset($CONFIG['DB_USER'])) {
+            echo ("DB_USER not set in config");
+            exit;
+        }
+        if (!isset($CONFIG['DB_PASS'])) {
+            echo ("DB_PASS not set in config");
+            exit;
+        }
+        self::$PAGE_SIZE = $CONFIG['PAGE_SIZE'] ?? 10;
+        self::$DB_HOST = $CONFIG['DB_HOST'];
+        self::$DB_USER = $CONFIG['DB_USER'];
+        self::$DB_PASS = $CONFIG['DB_PASS'];
+
         self::$app = $this;
         self::$ROOT = $root;
         $this->request = new Request();

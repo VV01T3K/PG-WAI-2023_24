@@ -11,10 +11,10 @@ class Business
     public function __construct()
     {
         $client = new Client(
-            "mongodb://localhost:27017/wai",
+            Application::$DB_HOST,
             [
-                'username' => 'wai_web',
-                'password' => 'w@i_w3b',
+                'username' => Application::$DB_USER,
+                'password' => Application::$DB_PASS,
             ]
         );
         $this->connection = $client->wai;
@@ -31,7 +31,7 @@ class Business
     {
         $this->connection->gallery->insertOne($img);
     }
-    public function getGalleryPage($page, $pageSize, $params = false)
+    public function getGalleryPage($page, $params = false)
     {
         if (is_array($params)) {
             $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];
@@ -47,20 +47,20 @@ class Business
             ];
         }
 
-        $max_page = $this->getMaxPage($pageSize, $query);
+        $max_page = $this->getMaxPage($query);
         $page = $page > $max_page ? $max_page : $page;
         $page = $page < 1 ? 1 : $page;
 
         $options = [
-            'skip' => ($page - 1) * $pageSize,
-            'limit' => $pageSize,
+            'skip' => ($page - 1) * Application::$PAGE_SIZE,
+            'limit' => Application::$PAGE_SIZE,
         ];
 
         $images = $this->connection->gallery->find($query, $options);
 
         return [$images, $max_page];
     }
-    public function searchImages($page, $pageSize, $phrase)
+    public function searchImages($page, $phrase)
     {
         if ($page < 1)
             $page = 1;
@@ -85,12 +85,12 @@ class Business
             ],
         ];
 
-        $max_page = $this->getMaxPage($pageSize, $query);
+        $max_page = $this->getMaxPage($query);
         $page = $page > $max_page ? $max_page : $page;
         $page = $page < 1 ? 1 : $page;
 
         $options = [
-            'skip' => ($page - 1) * $pageSize,
+            'skip' => ($page - 1) * Application::$PAGE_SIZE,
             'limit' => 10,
         ];
 
@@ -110,10 +110,10 @@ class Business
         $this->connection->users->deleteOne($user);
     }
     // utils ⬇️ ---------------------------------------
-    public function getMaxPage($pageSize, $query = [])
+    public function getMaxPage($query = [])
     {
         $count = $this->connection->gallery->count($query);
-        return ceil($count / $pageSize);
+        return ceil($count / Application::$PAGE_SIZE);
     }
     public function oID($string)
     {
