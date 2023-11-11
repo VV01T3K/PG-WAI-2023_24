@@ -1,5 +1,3 @@
-const button = document.querySelector("#save");
-
 function add_favs() {
     const favs = document.querySelectorAll('[name="fav"]:checked');
     const favsArray = [...favs];
