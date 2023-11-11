@@ -45,7 +45,7 @@ class ImageModel extends Model
             'visibility' => $this->visibility,
         ];
 
-        Application::$app->db->save_image($imgDB);
+        Application::$app->db->saveImage($imgDB);
     }
 
     public function validate()

@@ -12,20 +12,20 @@ class GalleryPageModel
     private $pageSize = 10;
     public function __construct($pageNumber)
     {
-        $this->max_page = Application::$app->db->get_max_page_images($this->pageSize);
+        $this->max_page = Application::$app->db->getMaxGalleryPage($this->pageSize);
         $this->page = $pageNumber > $this->max_page ? $this->max_page : $pageNumber;
     }
     public function getImages()
     {
-        $this->images = Application::$app->db->get_page_images($this->page, $this->pageSize);
+        $this->images = Application::$app->db->getGalleryPage($this->page, $this->pageSize);
     }
     public function getFavoriteImages()
     {
-        $this->images = Application::$app->db->get_page_images($this->page, $this->pageSize, $_SESSION['fav'] ?? []);
+        $this->images = Application::$app->db->getGalleryPage($this->page, $this->pageSize, $_SESSION['fav'] ?? []);
     }
     public function getMatchingImages($phrase)
     {
-        $this->images = Application::$app->db->search_images($phrase);
+        $this->images = Application::$app->db->searchImages($phrase);
         if ($this->images == NULL)
             return false;
     }

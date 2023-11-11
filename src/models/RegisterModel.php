@@ -21,7 +21,7 @@ class RegisterModel extends Model
             'password' => password_hash($this->password, PASSWORD_DEFAULT),
         ];
 
-        Application::$app->db->save_user($user);
+        Application::$app->db->saveUser($user);
     }
 
     public function validate()

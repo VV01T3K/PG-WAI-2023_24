@@ -27,11 +27,11 @@ class Business
         }
     }
 
-    public function save_image($img)
+    public function saveImage($img)
     {
         $this->connection->gallery->insertOne($img);
     }
-    public function get_page_images($page, $pageSize, $params = false)
+    public function getGalleryPage($page, $pageSize, $params = false)
     {
         if (is_array($params)) {
             $query = ['_id' => ['$in' => array_map([$this, "oID"], $params)]];
@@ -55,7 +55,7 @@ class Business
 
         return $images;
     }
-    public function search_images($phrase)
+    public function searchImages($phrase)
     {
         $query = [
             '$and' => [
@@ -89,16 +89,16 @@ class Business
 
         return $images;
     }
-    public function get_max_page_images($pageSize)
+    public function getMaxGalleryPage($pageSize)
     {
         $count = $this->connection->gallery->count();
         return ceil($count / $pageSize);
     }
-    public function save_user($user)
+    public function saveUser($user)
     {
         $this->connection->users->insertOne($user);
     }
-    public function delete_user($user)
+    public function deleteUser($user)
     {
         $this->connection->users->deleteOne($user);
     }
@@ -108,7 +108,7 @@ class Business
         $id = new ObjectId($string);
         return $id;
     }
-    public function get_user($login)
+    public function getUser($login)
     {
         return ($this->connection->users->findOne(['login' => $login]));
     }
