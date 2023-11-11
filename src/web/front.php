@@ -17,10 +17,10 @@ $app->router->get('/image', [SiteController::class, 'image']);
 $app->router->post('/image', [SiteController::class, 'image']);
 
 $app->router->get('/gallery', [SiteController::class, 'gallery']);
-$app->router->post('/gallery', [SiteController::class, 'gallery']);
+$app->router->put('/gallery', [SiteController::class, 'gallery']);
 
 $app->router->get('/favorites', [SiteController::class, 'favorites']);
-$app->router->post('/favorites', [SiteController::class, 'favorites']);
+$app->router->delete('/favorites', [SiteController::class, 'favorites']);
 
 $app->router->get('/search', [SiteController::class, 'search']);
 $app->router->post('/search', [SiteController::class, 'search']);

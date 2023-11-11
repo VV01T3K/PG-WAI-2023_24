@@ -17,6 +17,18 @@ class Router
     {
         $this->routes['post'][$path] = $callback;
     }
+    public function delete($path, $callback)
+    {
+        $this->routes['delete'][$path] = $callback;
+    }
+    public function put($path, $callback)
+    {
+        $this->routes['put'][$path] = $callback;
+    }
+    public function patch($path, $callback)
+    {
+        $this->routes['patch'][$path] = $callback;
+    }
     public function resolve()
     {
         $path = $this->request->getPath();

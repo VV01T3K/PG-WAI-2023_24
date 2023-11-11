@@ -16,8 +16,4 @@ class Controller
     {
         return Application::$app->router->renderView(...Application::$app->response->httpCode($code));
     }
-    public static function readHxPayload($payload)
-    {
-        return json_decode(html_entity_decode($payload['payload']));
-    }
 }

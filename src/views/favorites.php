@@ -15,8 +15,7 @@
     </form>
 
     <br>
-    <button id="save" hx-vals='js:{payload: delete_favs()}' hx-post="/favorites" hx-swap="innerHTML" hx-trigger="click"
-        hx-target="#response">
+    <button hx-vals='js:{payload: delete_favs()}' hx-delete="/favorites" hx-target="#response">
         Usuń zaznaczone z zapamiętanych
     </button>
     <span id="response"></span>

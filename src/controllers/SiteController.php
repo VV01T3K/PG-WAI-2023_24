@@ -11,6 +11,16 @@ class SiteController extends Controller
 {
     public function gallery($request)
     {
+
+        if ($request->isHTMX() && $request->isPUT()) {
+
+            $body = $request->getBody();
+
+            $_SESSION['fav'] = $body;
+
+            return "Zapisano!";
+        }
+
         if ($request->isGET()) {
 
             $pageNumber = $request->getBody()['page'] ?? 1;
@@ -21,18 +31,24 @@ class SiteController extends Controller
             return $this->render('gallery', $galleryPage);
         }
 
-        if ($request->isHTMX() && $request->isPOST()) {
-
-            $body = $request->getBody();
-
-            $_SESSION['fav'] = Controller::readHxPayload($body);
-
-            return "Zapisano!";
-        }
         return $this->renderHttpCode(405);
     }
     public function favorites($request)
     {
+        if ($request->isHTMX() && $request->isDELETE()) {
+
+            $body = $request->getBody();
+
+            $_SESSION['fav'] =
+                array_values(
+                    array_diff(
+                        $_SESSION['fav'],
+                        $body ?? []
+                    )
+                );
+
+            return "Usunięto!";
+        }
         if ($request->isGET()) {
 
             $pageNumber = $request->getBody()['page'] ?? 1;
@@ -42,22 +58,6 @@ class SiteController extends Controller
             $galleryPage->getFavoriteImages();
 
             return $this->render('favorites', $galleryPage);
-        }
-        if ($request->isHTMX() && $request->isPOST()) {
-
-            $body = $request->getBody();
-
-            $_SESSION['fav'] =
-                // porządkuje indeksy tablicy
-                array_values(
-                    // usuwa z tablicy elementy z drugiej tablicy
-                    array_diff(
-                        $_SESSION['fav'],
-                        Controller::readHxPayload($body) ?? []
-                    )
-                );
-
-            return "Usunięto!";
         }
         return $this->renderHttpCode(405);
     }
@@ -92,11 +92,8 @@ class SiteController extends Controller
     }
     public function search($request)
     {
-        if ($request->isGET())
-            return $this->render('search');
 
         if ($request->isHTMX() && $request->isPOST()) {
-
 
             $phrase = $request->getBody()['phrase'] ?? "";
 
@@ -110,6 +107,10 @@ class SiteController extends Controller
 
             return $this->renderPartial('/partials/galleryPage', $galleryPage);
         }
+
+        if ($request->isGET())
+            return $this->render('search');
+
         return $this->renderHttpCode(405);
     }
 }

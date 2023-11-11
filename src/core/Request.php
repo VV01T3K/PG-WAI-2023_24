@@ -20,10 +20,6 @@ class Request
     {
         $body = [];
 
-        if ($this->isHTMX()) {
-            $body = json_decode(file_get_contents('php://input'), true);
-        }
-
         if ($this->isGET()) {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -33,6 +29,17 @@ class Request
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
+        }
+        if ($this->isDELETE() || $this->isPUT() || $this->isPATCH()) {
+            parse_str(file_get_contents("php://input"), $_METHOD);
+            foreach ($_METHOD as $key => $value) {
+                $body[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        // unpacks payload from htmx request
+        if ($this->isHTMX() && isset($body['payload'])) {
+            $body = json_decode(html_entity_decode($body['payload']), true);
         }
 
         return $body;
