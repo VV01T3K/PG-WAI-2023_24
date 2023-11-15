@@ -24,7 +24,7 @@ class SiteController extends Controller
                 }
             }
 
-            return "Zapisano!";
+            return "Saved!";
         }
 
         if ($request->isGET()) {
