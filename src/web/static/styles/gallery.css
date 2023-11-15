@@ -1,0 +1,133 @@
+.thumb {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--clr-val-accent);
+}
+
+.checkbox {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+
+    display: inline-block;
+    background-color: var(--clr-val-accent);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.checkbox svg {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke: var(--clr-val-darkest);
+}
+
+.checkbox svg:hover,
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.checkbox:has(:checked) svg {
+    fill: var(--clr-val-darkest);
+}
+
+.checkbox input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    user-select: none;
+}
+
+.desc {
+    padding: 1rem 0.5rem 0.2rem 0.5rem;
+    margin-top: -0.85rem;
+    background-color: var(--clr-val-accent);
+    width: 100%;
+    border: 2px solid var(--clr-val-accent);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.image {
+    overflow: hidden;
+}
+
+.desc {
+    font-size: 0.8rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: var(--clr-val-dark);
+}
+.heading {
+    font-size: 0.6rem;
+    font-family: ValorantFont;
+}
+
+#images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0.25rem;
+}
+
+.thumb img {
+    width: 100%;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.wrapper img {
+    width: 70%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 1rem;
+    box-shadow: inset 0 0 20rem rgba(0, 0, 0, 1);
+}
+
+.htmx {
+    display: grid;
+    gap: 1rem;
+    padding: 2.2rem;
+    text-align: center;
+    width: min-content;
+    height: fit-content;
+}
+.htmx button {
+    padding: 0.3rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--clr-val-accent);
+    background-color: var(--clr-val-dark);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, scale 0.2s ease-in-out;
+}
+.htmx button:hover {
+    background-color: var(--clr-val-accent);
+    scale: 1.1;
+}
+.search {
+    background-color: var(--clr-val-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--clr-val-accent);
+    font-size: 1rem;
+    color: var(--clr-val-neutral-0);
+    transition: background-color 0.2s ease-in-out, scale 0.2s ease-in-out;
+    margin-bottom: 1.5rem;
+}
+::placeholder {
+    color: var(--clr-val-neutral-0);
+    opacity: 0.6;
+}
+
+::-ms-input-placeholder {
+    color: var(--clr-val-neutral-0);
+    opacity: 0.6;
+}

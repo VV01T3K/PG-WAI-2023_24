@@ -1,0 +1,29 @@
+main {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 10%;
+}
+div {
+    margin: auto;
+    margin-left: -6rem;
+}
+main > section > form {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+main > section > form > button {
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: auto;
+        max-width: min-content;
+    }
+    main > div {
+        margin: unset;
+    }
+}
