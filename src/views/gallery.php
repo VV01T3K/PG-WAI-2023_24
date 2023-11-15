@@ -8,7 +8,8 @@
             ?>
         </div>
         <div class="htmx">
-            <button hx-vals="js:{payload: add_favs()}" hx-put="/gallery" hx-target="#response">
+            <button hx-vals="js:{payload: add_favs()}" hx-put="/gallery" hx-target="#response"
+                style="margin-top: 2.3rem;">
                 Save
             </button>
             <p id="response"></p>

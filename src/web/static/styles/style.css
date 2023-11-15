@@ -31,7 +31,6 @@
     --clr-val-neutral-0: #fffbf5;
     --clr-neutral-0: #fffbf5;
     --clr-neutral-1000: #000000;
-    --clt-eye-catch: #0096ff;
     font-size: clamp(0.5rem, 1vw + 0.2rem, 1.2rem);
 }
 
@@ -44,10 +43,6 @@ body {
     background-color: var(--clr-neutral-1000);
     display: grid;
     grid-template-rows: auto 1fr auto;
-}
-
-#response:empty {
-    display: none;
 }
 
 header {
@@ -284,4 +279,10 @@ main:has(#splash404) section {
     box-sizing: content-box;
     border: 1px solid var(--clr-val-dark);
     transition: background-color 0.2s ease-in-out, scale 0.2s ease-in-out;
+}
+#response {
+    font-size: 1.2rem;
+    margin: -0.5rem;
+    padding: 0;
+    height: 1.2rem;
 }

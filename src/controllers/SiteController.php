@@ -53,7 +53,7 @@ class SiteController extends Controller
                     )
                 );
 
-            return "Usunięto!";
+            return "Deleted!";
         }
         if ($request->isGET()) {
 

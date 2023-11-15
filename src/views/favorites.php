@@ -1,46 +1,49 @@
-<main id="gallery">
-    <h1>Favorites</h1>
-
-    <form action="" method="get">
-        <input type="number" name="page" value="1" hidden>
-        <input type="submit" value="First page (1)">
-    </form>
-    <form action="" method="get">
-        <input type="number" name="page" min="1" max="<?= $max_page ?>" id="page" value="<?= $page ?>">
-        <input type="submit" value="Go to page">
-    </form>
-    <form action="" method="get">
-        <input type="number" name="page" value="<?= $max_page ?>" hidden>
-        <input type="submit" value="Last page (<?= $max_page ?>)">
-    </form>
-
-    <br>
-    <button hx-vals='js:{payload: delete_favs()}' hx-delete="/favorites" hx-target="#response">
-        Usuń zaznaczone z zapamiętanych
-    </button>
-    <span id="response"></span>
-    <div id="grid">
+<link rel="stylesheet" href="static/styles/gallery.css" />
+<main>
+    <div class="wrapper">
+        <div>
+            <h1>Saved Images</h1>
+            <?php
+            include '../views/partials/pagination.php';
+            ?>
+        </div>
+        <div class="htmx">
+            <button hx-vals='js:{payload: delete_favs()}' hx-delete="/favorites" hx-target="#response"
+                style="margin-top: 5.2rem;">
+                Delete
+            </button>
+            <p id="response"></p>
+        </div>
+        <img id="splash4" src="static/Img/gallery-splash.png" alt="gallery-splash" />
+    </div>
+    <section id="images">
         <?php foreach ($images as $image): ?>
-            <div class='image'>
-                <a href="Images/watermark/<?= $image['file_name'] ?>">
-                    <img src="/Images/thumbnail/<?= $image['file_name'] ?>" alt="">
-                </a>
-                <p>
-                    Widoczność:
-                    <?= $image['visibility'] ?>
-                    <input type="checkbox" name="fav" <?php
-                    echo "value='$image[_id]'";
-                    ?>>
-
-                    <br>
-                    Autor:
-                    <?= $image['author'] ?>
-                    | Tytuł:
-                    <?= $image['title'] ?>
-                </p>
+            <div class="image">
+                <div class="thumb">
+                    <label class="checkbox">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <input type="checkbox" name="fav" <?php
+                        echo "value='$image[_id]'";
+                        ?>>
+                    </label>
+                    <a href="Images/watermark/<?= $image['file_name'] ?>">
+                        <img src="/Images/thumbnail/<?= $image['file_name'] ?>" alt="<?= $image['title'] ?>">
+                    </a>
+                </div>
+                <div class="desc">
+                    <span class="heading">Author</span>
+                    <span class="heading">Title</span>
+                    <span>
+                        <?= $image['author'] ?>
+                    </span>
+                    <span>
+                        <?= $image['title'] ?>
+                    </span>
+                </div>
             </div>
         <?php endforeach ?>
-    </div>
+    </section>
 </main>
-
 <script defer src="static/scripts/gallery.js"></script>
