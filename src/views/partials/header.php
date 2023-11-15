@@ -1,50 +1,55 @@
 <!DOCTYPE html>
-<html lang="pl_PL">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Moja piekna strona</title>
 
+    <link rel="stylesheet" href="static/styles/style.css" />
+    <link rel="shortcut icon" href="static/Img/svg/valorant-logo.svg" type="image/x-icon" />
+    <!-- <link rel="prefetch" href="static/styles/form.css" /> -->
+    <!-- <link rel="prefetch" href="static/styles/gallery.css" /> -->
+    <!-- <link rel="prefetch" href="static/styles/register.css" /> -->
+    <!-- <link rel="prefetch" href="static/styles/home.css" /> -->
+    <script defer src="static/scripts/script.js"></script>
     <script defer src="static/scripts/htmx.min.js"></script>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            color-scheme: dark light;
-        }
-
-        #gallery div#grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            margin: 1rem;
-            gap: 1.5rem;
-        }
-
-        div#grid div {
-            border: 1px solid white;
-            padding: .5rem;
-            width: fit-content;
-            border-radius: .5rem;
-        }
-
-        [name="fav"]:checked {
-            scale: 1.3;
-        }
-
-        #response:empty {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
-    <a href="/">Back</a>
-
-    <?php if ($_SESSION['user_id'] ?? false): ?>
-        <a href='/logout'>Logout</a>
-        <br>
-        <div class='user'>Logged in as:
-            <?= $_SESSION['user_login'] ?>
-        </div>
-    <?php endif ?>
+    <header>
+        <nav>
+            <menu>
+                <li title="Back">
+                    <a href="/">
+                        <svg class="rewind" id="rewind" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <polygon points="11 19 2 12 11 5 11 19"></polygon>
+                            <polygon points="22 19 13 12 22 5 22 19"></polygon>
+                        </svg>
+                    </a>
+                </li>
+                <li title="Refresh">
+                    <a href="">
+                        <svg class="rewind" id="refresh" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38" />
+                        </svg>
+                    </a>
+                </li>
+            </menu>
+            <menu>
+                <li><a href="/">Home</a></li>
+                <li><a href="image">Add Image</a></li>
+                <li><a href="gallery">Gallery</a></li>
+                <li><a href="favorites">Saved</a></li>
+                <li><a href="search">Search</a></li>
+            </menu>
+            <menu>
+                <?php if ($_SESSION['user_id'] ?? false): ?>
+                    <li><a href="logout">Log out</a></li>
+                <?php else: ?>
+                    <li><a href="login">Log in</a></li>
+                    <li><a href="register">register</a></li>
+                <?php endif ?>
+            </menu>
+        </nav>
+    </header>
