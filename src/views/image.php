@@ -14,14 +14,14 @@
             </label>
             <label>
                 <h3>Watermark</h3>
-                <input type="text" name="watermark" placeholder="Znak wodny" />
+                <input type="text" name="watermark" placeholder="Enter text" />
                 <h6 class="warning" <?= ($errors['watermark'] ?? false) ? '' : 'hidden' ?>>
                     <?= $errors['watermark'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Author</h3>
-                <input type="text" name="author" placeholder="Autor"
+                <input type="text" name="author" placeholder="Enter author"
                     value="<?= ($_SESSION['user_id'] ?? false) ? $_SESSION['user_login'] : "" ?>" />
                 <h6 class="warning" <?= ($errors['author'] ?? false) ? '' : 'hidden' ?>>
                     <?= $errors['author'] ?? '' ?>
@@ -29,7 +29,7 @@
             </label>
             <label>
                 <h3>Title</h3>
-                <input type="text" name="title" placeholder="Tytuł" />
+                <input type="text" name="title" placeholder="Enter title" />
                 <h6 class="warning" <?= ($errors['title'] ?? false) ? '' : 'hidden' ?>>
                     <?= $errors['title'] ?? '' ?>
                 </h6>

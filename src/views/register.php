@@ -7,7 +7,7 @@
         <form action="" method="post">
             <label>
                 <h3>Username</h3>
-                <input value="preview" type="text" name="login" placeholder="Enter your login" />
+                <input value="" type="text" name="login" placeholder="Enter your login" />
                 <h6 class="warning" <?= ($errors['login'] ?? false) ? '' : 'hidden' ?>>
                     <?= $errors['login'] ?? '' ?>
                 </h6>

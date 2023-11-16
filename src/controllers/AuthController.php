@@ -30,7 +30,7 @@ class AuthController extends Controller
 
             $loginModel->login();
 
-            return $this->render('login', ['msg' => "Logged in"]);
+            return $this->render('login', ['msg' => "Logged in as " . $_SESSION["user_login"]]);
         }
         return $this->renderHttpCode(405);
     }
