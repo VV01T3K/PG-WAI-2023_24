@@ -91,7 +91,7 @@ class Business
 
         $options = [
             'skip' => ($page - 1) * Application::$PAGE_SIZE,
-            'limit' => 10,
+            'limit' => Application::$PAGE_SIZE,
         ];
 
         if ($this->connection->gallery->count($query, $options) == 0)
