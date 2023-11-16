@@ -62,9 +62,13 @@ class ImageModel extends Model
             $this->errors += ['title' => "Title empty"];
 
         if ($this->size > $this->maxSize)
-            return "Plik jest za duży!";
+            $this->errors += ['img' => "Plik jest za duży!"];
         if (!in_array($this->type, $this->valid_types))
-            return "Nieprawidłowy format pliku!";
+            $this->errors += ['img' => "Nieprawidłowy format pliku!"];
+        if (!$this->file_status)
+            $this->errors['img'] = "File empty";
+
+        // print_r($this->errors);
 
         return $this->errors;
     }

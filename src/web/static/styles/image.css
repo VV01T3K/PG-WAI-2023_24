@@ -1,0 +1,17 @@
+input[type="file"] {
+    font-size: 0.9rem;
+    width: 90%;
+}
+form {
+    margin-top: -8rem;
+}
+button {
+    max-height: 50%;
+}
+span {
+    margin-top: -2.5rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+}
