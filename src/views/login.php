@@ -25,9 +25,9 @@
         <h4><a href="/register">I don't have an account!</a></h4>
     </section>
     <div>
-        <img src="static/Img/login-splash1.png" alt="login-splash1" />
+        <img id="splash1" src="static/Img/login-splash1.png" alt="login-splash1" />
     </div>
     <div>
-        <img src="static/Img/login-splash2.png" alt="login-splash2" />
+        <img id="splash2" src="static/Img/login-splash2.png" alt="login-splash2" />
     </div>
 </main>

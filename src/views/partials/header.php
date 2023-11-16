@@ -4,16 +4,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja piekna strona</title>
+    <title>Valorant Gallery</title>
+    <link rel="shortcut icon" href="static/Img/svg/valorant-logo.svg" type="image/x-icon" />
 
     <link rel="stylesheet" href="static/styles/style.css" />
-    <link rel="shortcut icon" href="static/Img/svg/valorant-logo.svg" type="image/x-icon" />
     <!-- <link rel="prefetch" href="static/styles/form.css" /> -->
     <!-- <link rel="prefetch" href="static/styles/gallery.css" /> -->
     <!-- <link rel="prefetch" href="static/styles/register.css" /> -->
     <!-- <link rel="prefetch" href="static/styles/home.css" /> -->
+
     <script defer src="static/scripts/script.js"></script>
     <script defer src="static/scripts/htmx.min.js"></script>
+
+    <link rel="preload" as="image" href="static/Img/mini/valorant-splash-mini.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="static/Img/mini/register-splash-mini.png" fetchpriority="high">
+    <link rel="preload" as="image" href="static/Img/mini/login-splash1-mini.png" fetchpriority="high">
+    <link rel="preload" as="image" href="static/Img/mini/login-splash2-mini.png" fetchpriority="high">
+    <link rel="preload" as="image" href="static/Img/mini/gallery-splash-mini.png" fetchpriority="high">
+
 </head>
 
 <body>
