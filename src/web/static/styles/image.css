@@ -8,7 +8,7 @@ form {
 button {
     max-height: 50%;
 }
-span {
+main span {
     margin-top: -2.5rem;
     display: flex;
     justify-content: left;
