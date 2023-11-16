@@ -45,6 +45,11 @@
             </menu>
             <menu>
                 <?php if ($_SESSION['user_id'] ?? false): ?>
+                    <div class="user">
+                        <p>User:
+                            <?= $_SESSION['user_login'] ?? '' ?>
+                        </p>
+                    </div>
                     <li><a href="logout">Log out</a></li>
                 <?php else: ?>
                     <li><a href="login">Log in</a></li>

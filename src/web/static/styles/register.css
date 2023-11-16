@@ -27,3 +27,6 @@ main > section > form > button {
         margin: unset;
     }
 }
+.warning {
+    width: 86%;
+}

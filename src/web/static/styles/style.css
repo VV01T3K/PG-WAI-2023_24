@@ -286,3 +286,8 @@ main:has(#splash404) section {
     padding: 0;
     height: 1.2rem;
 }
+.user {
+    display: flex;
+    align-items: center;
+    margin-bottom: -0.35rem;
+}

@@ -1,19 +1,33 @@
+<link rel="stylesheet" href="static/styles/form.css" />
 <main>
-    <h1>Login</h1>
+    <section>
+        <h1>Log into your account</h1>
 
-    <form action="" method="post">
-        <input value="<?= $login ?? '' ?>" type="text" name="login" placeholder="Your username">
+        <form action="" method="post">
+            <label>
+                <h3>Username</h3>
+                <input value="<?= $login ?? '' ?>" type="text" name="login" placeholder="Enter your login" />
+                <h6 class="warning" <?= ($errors['login'] ?? false) ? '' : 'hidden' ?>>
+                    <?= $errors['login'] ?? '' ?>
+                </h6>
+            </label>
+            <label>
+                <h3>Password</h3>
+                <input type="password" name="password" placeholder="Enter your password" />
+                <h6 class="warning" <?= ($errors['password'] ?? false) ? '' : 'hidden' ?>>
+                    <?= $errors['password'] ?? '' ?>
+                </h6>
+            </label>
+            <button class="val">Send</button>
+            <?= $msg ?? '' ?>
+        </form>
         <br>
-        <?= $errors['login'] ?? '' ?>
-        <br>
-        <input type="password" name="password" placeholder="Your password">
-        <br>
-        <?= $errors['password'] ?? '' ?>
-        <br>
-        <br>
-        <input type="submit" value="Send">
-    </form>
-    <br>
-    <?= $msg ?? '' ?>
-
+        <h4><a href="/register">I don't have an account!</a></h4>
+    </section>
+    <div>
+        <img src="static/Img/login-splash1.png" alt="login-splash1" />
+    </div>
+    <div>
+        <img src="static/Img/login-splash2.png" alt="login-splash2" />
+    </div>
 </main>
