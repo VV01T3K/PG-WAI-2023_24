@@ -1,25 +1,30 @@
+<link rel="stylesheet" href="static/styles/home.css" />
 <main>
-    <!-- <?= "$image[_id] $image[name]" ?> "> -->
-    <h1>
-        Witam
-        <?= ($_SESSION['user_id'] ?? false) ? $_SESSION['user_login'] : "GUEST" ?> !!!
-
-    </h1>
-
-    <ul>
-        <li><a href="/">home</a></li>
-        <li><a href="image">image</a></li>
-        <li><a href="gallery">gallery</a></li>
-        <li><a href="favorites">favorites</a></li>
-        <br>
-        <li><a href="search">search</a></li>
-        <br>
-        <?php if ($_SESSION['user_id'] ?? false): ?>
-            <li><a href='logout'>logout</a></li>
-        <?php else: ?>
-            <li><a href='login'>login</a></li>
-            <li><a href='register'>register</a></li>
-        <?php endif ?>
-
-    </ul>
+    <div class="wrapper">
+        <h1><span class="val">Hello</span>
+            <?= ($_SESSION['user_id'] ?? false) ? $_SESSION['user_login'] : "GUEST" ?> <span class="val">!!!</span>
+        </h1>
+        <section>
+            <!-- ChatGPT generated -->
+            <p>
+                Welcome to <span class="val big">ValorantGallery</span>, the ultimate gallery for
+                <span class="val">Valorant</span> enthusiasts! Immerse yourself in a diverse
+                collection of stunning images inspired by the thrilling world of
+                <span class="val">Valorant</span>.
+            </p>
+            <p>
+                Whether you're a seasoned player or a creative visionary, join our community to share
+                and explore captivating visuals that celebrate the unique essence of
+                <span class="val">Valorant</span>.
+            </p>
+            <p>
+                Welcome to a space where every image contributes to the dynamic legacy of
+                <span class="val">Valorant</span>! Explore with us as every frame tells a story, and
+                together, we shape the visual narrative of <span class="val">Valorant</span>'s
+                universe.
+            </p>
+            <!-- End ChatGPT -->
+        </section>
+    </div>
+    <img id="splash0" src="static/Img/valorant-splash.jpg" alt="valorant-splash" />
 </main>

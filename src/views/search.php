@@ -1,14 +1,17 @@
-<main id="grid">
-    <h1>Search</h1>
-
-    <input type="search" hx-vals="{'page': false}" name="phrase" placeholder="Begin Typing To Search Users..."
-        hx-post="/search" hx-trigger="input changed delay:150ms, search" hx-target="#response">
-
-    <div id="response">
-        <div id="gallery">
-            <div id="grid">
-                <?= $msg ?? "" ?>
-            </div>
+<link rel="stylesheet" href="static/styles/gallery.css" />
+<main>
+    <div class="wrapper">
+        <div>
+            <h1>Search</h1>
+            <span class="val htmx-indicator">searching...</span>
+            <br />
+            <input class="search" type="search" hx-vals="{'page': false}" name="phrase"
+                placeholder="Begin Typing To Search" hx-post="/search" hx-trigger="input changed delay:150ms, search"
+                hx-target="#resp" hx-indicator=".htmx-indicator" />
         </div>
+    </div>
+
+    <div id="resp">
+        <?= $msg ?? "" ?>
     </div>
 </main>
