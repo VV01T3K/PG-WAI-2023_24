@@ -21,7 +21,7 @@ class ImageModel extends Model
     public $type;
     public $tmp_path;
     public $size;
-
+    public $msg;
     public $path;
     private $unique_name;
 
@@ -32,7 +32,7 @@ class ImageModel extends Model
     }
     public function save()
     {
-        $uniqueID = uniqid('', true);
+        $uniqueID = uniqid();
 
         $this->unique_name = $uniqueID . "." . pathinfo($this->name, PATHINFO_EXTENSION);
 
@@ -54,21 +54,28 @@ class ImageModel extends Model
 
     public function validate()
     {
+        $this->errors['img'] = [];
+
         if (empty($this->watermark))
-            $this->errors += ['watermark' => "Watermark empty"];
+            $this->errors += ['watermark' => "Watermark empty!"];
         if (empty($this->author))
-            $this->errors += ['author' => "Author empty"];
+            $this->errors += ['author' => "Author empty!"];
         if (empty($this->title))
-            $this->errors += ['title' => "Title empty"];
+            $this->errors += ['title' => "Title empty!"];
 
-        if ($this->size > $this->maxSize)
-            $this->errors += ['img' => "Plik jest za duży!"];
         if (!in_array($this->type, $this->valid_types))
-            $this->errors += ['img' => "Nieprawidłowy format pliku!"];
-        if (!$this->file_status)
-            $this->errors['img'] = "File empty";
+            $this->errors['img'][0] = "Wrong file type!";
+        if ($this->size > $this->maxSize)
+            $this->errors['img'][1] = "File too big!";
+        if (!$this->file_status) {
+            $this->errors['img'][0] = "File empty!";
+            $this->errors['img'][1] = false;
+        }
 
-        // print_r($this->errors);
+        if (empty($this->errors['img']))
+            unset($this->errors['img']);
+        if ($this->errors)
+            $this->msg = "Errors in form!";
 
         return $this->errors;
     }

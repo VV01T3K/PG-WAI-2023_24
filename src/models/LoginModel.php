@@ -21,19 +21,19 @@ class LoginModel extends Model
     public function validate()
     {
         if (empty($this->login))
-            $this->errors += ['login' => "Login empty"];
+            $this->errors += ['login' => "Login empty!"];
 
         if (!Application::$app->db->userExists($this->login)) {
-            $this->errors += ['login' => "User doesn't exist"];
+            $this->errors += ['login' => "User doesn't exist!"];
         } else {
             $this->user = Application::$app->db->getUser($this->login);
         }
 
         if (empty($this->password))
-            $this->errors += ['password' => "Password empty"];
+            $this->errors += ['password' => "Password empty!"];
 
         if ($this->user && !password_verify($this->password, $this->user['password']))
-            $this->errors += ['password' => "Wrong password"];
+            $this->errors += ['password' => "Wrong password!"];
 
         return $this->errors;
     }

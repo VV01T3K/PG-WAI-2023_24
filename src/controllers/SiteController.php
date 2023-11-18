@@ -112,7 +112,7 @@ class SiteController extends Controller
         }
 
         if ($request->isGET())
-            return $this->render('search', ['msg' => "Brak frazy do wyszukania!"]);
+            return $this->render('search', ['msg' => "No phrase given!!"]);
 
         return $this->renderHttpCode(405);
     }

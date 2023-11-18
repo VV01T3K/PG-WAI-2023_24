@@ -49,7 +49,7 @@ main a:hover {
 
 input,
 button {
-    border: 2px solid var(--clr-val-darkest);
+    border: 2px solid var(--clr-val-dark);
     border-radius: 0.5rem;
     padding: 0.5rem;
     font-size: 1.1rem;

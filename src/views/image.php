@@ -9,7 +9,12 @@
                 <h3>File</h3>
                 <input type="file" name="img" />
                 <h6 class="warning" <?= ($errors['img'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
-                    <?= $errors['img'] ?? '' ?>
+                    <?= $errors['img'][0] ?? '' ?>
+                    <?php
+                    if (($errors['img'][1] ?? false) && ($errors['img'][0] ?? false))
+                        echo "<br>";
+                    ?>
+                    <?= $errors['img'][1] ?? '' ?>
                 </h6>
             </label>
             <label>

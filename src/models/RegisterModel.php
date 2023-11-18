@@ -32,25 +32,25 @@ class RegisterModel extends Model
     public function validate()
     {
         if (empty($this->login))
-            $this->errors += ['login' => "Login empty"];
+            $this->errors += ['login' => "Login empty!"];
 
         if (Application::$app->db->userExists($this->login))
-            $this->errors += ['login' => "Login is taken"];
+            $this->errors += ['login' => "Login is already taken!"];
 
         if (empty($this->email))
-            $this->errors += ['email' => "Email empty"];
+            $this->errors += ['email' => "Email empty!"];
 
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false)
-            $this->errors += ['email' => "Email is invalid"];
+            $this->errors += ['email' => "Email is invalid!"];
 
         if (empty($this->password))
-            $this->errors += ['password' => "Password empty"];
+            $this->errors += ['password' => "Password empty!"];
 
         if (empty($this->password_confirm))
-            $this->errors += ['password_confirm' => "Confirm your password"];
+            $this->errors += ['password_confirm' => "Confirm your password!"];
 
         if ($this->password !== $this->password_confirm)
-            $this->errors += ['password_match' => "Passwords don't match"];
+            $this->errors += ['password_match' => "Passwords don't match!"];
 
         return $this->errors;
     }

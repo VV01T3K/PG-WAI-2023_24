@@ -19,7 +19,7 @@ class GalleryPageModel
         list($this->images, $this->max_page) = Application::$app->db->getGalleryPage($this->page);
         if ($this->page == 0) {
             $this->images = [];
-            $this->msg = "Brak obrazów w galerii!";
+            $this->msg = "No images in gallery!";
         }
     }
     public function getFavoriteImages()
@@ -32,10 +32,10 @@ class GalleryPageModel
             list($this->images, $this->max_page) = Application::$app->db->searchImages($this->page, $phrase);
             if ($this->images == NULL) {
                 $this->images = [];
-                $this->msg = "Brak wyników wyszukiwania!";
+                $this->msg = "No images matching phrase!";
             }
         } else {
-            $this->msg = "Brak frazy do wyszukania!";
+            $this->msg = "No phrase given!";
         }
 
 
