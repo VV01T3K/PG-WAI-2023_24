@@ -1,6 +1,6 @@
 @media (max-width: 900px) {
     main {
-        grid-template-columns: auto;
+        grid-template-columns: auto !important;
         grid-template-rows: min-content auto;
     }
     main section {
@@ -10,7 +10,7 @@
         margin: auto;
     }
     img {
-        max-width: 95%;
+        margin: auto !important;
     }
 }
 .wrapper {
