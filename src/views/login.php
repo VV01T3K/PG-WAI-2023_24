@@ -7,14 +7,14 @@
             <label>
                 <h3>Username</h3>
                 <input value="<?= $login ?? '' ?>" type="text" name="login" placeholder="Enter your login" />
-                <h6 class="warning" <?= ($errors['login'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['login'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['login'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Password</h3>
                 <input type="password" name="password" placeholder="Enter your password" />
-                <h6 class="warning" <?= ($errors['password'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['password'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['password'] ?? '' ?>
                 </h6>
             </label>

@@ -8,28 +8,28 @@
             <label>
                 <h3>Username</h3>
                 <input value="" type="text" name="login" placeholder="Enter your login" />
-                <h6 class="warning" <?= ($errors['login'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['login'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['login'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Password</h3>
                 <input type="password" name="password" placeholder="Enter your password" />
-                <h6 class="warning" <?= ($errors['password'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['password'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['password'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Email</h3>
                 <input type="email" name="email" placeholder="Enter your email" />
-                <h6 class="warning" <?= ($errors['email'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['email'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['email'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Repeat Password</h3>
                 <input type="password" name="password_confirm" placeholder="Confirm your password" />
-                <h6 class="warning" <?= ($errors['password_confirm'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['password_confirm'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['password_confirm'] ?? '' ?>
                 </h6>
             </label>

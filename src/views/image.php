@@ -8,14 +8,14 @@
             <label>
                 <h3>File</h3>
                 <input type="file" name="img" />
-                <h6 class="warning" <?= ($errors['img'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['img'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['img'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Watermark</h3>
                 <input type="text" name="watermark" placeholder="Enter text" />
-                <h6 class="warning" <?= ($errors['watermark'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['watermark'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['watermark'] ?? '' ?>
                 </h6>
             </label>
@@ -23,14 +23,14 @@
                 <h3>Author</h3>
                 <input type="text" name="author" placeholder="Enter author"
                     value="<?= ($_SESSION['user_id'] ?? false) ? $_SESSION['user_login'] : "" ?>" />
-                <h6 class="warning" <?= ($errors['author'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['author'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['author'] ?? '' ?>
                 </h6>
             </label>
             <label>
                 <h3>Title</h3>
                 <input type="text" name="title" placeholder="Enter title" />
-                <h6 class="warning" <?= ($errors['title'] ?? false) ? '' : 'hidden' ?>>
+                <h6 class="warning" <?= ($errors['title'] ?? false) ? 'data-hid="0"' : 'data-hid="1"' ?>>
                     <?= $errors['title'] ?? '' ?>
                 </h6>
             </label>

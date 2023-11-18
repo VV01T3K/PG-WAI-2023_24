@@ -84,15 +84,16 @@ button:active {
     border-radius: 0.3rem;
     animation: bounce 0.5s ease-in-out infinite;
 }
-.warning:empty {
-    visibility: hidden;
+.warning[data-hid="1"] {
+    display: none;
 }
 
-label:has(.warning:not(:empty)) input {
+label:has(.warning[data-hid="0"]) input {
     border-color: var(--clr-val-accent);
     background-color: var(--clr-val-darkest);
     animation: kick 0.1s 2;
 }
+
 @keyframes bounce {
     0%,
     100% {
