@@ -54,6 +54,7 @@ class Business
         $options = [
             'skip' => ($page - 1) * Application::$PAGE_SIZE,
             'limit' => Application::$PAGE_SIZE,
+            'sort' => ['_id' => -1],
         ];
 
         $images = $this->connection->gallery->find($query, $options);
@@ -92,6 +93,7 @@ class Business
         $options = [
             'skip' => ($page - 1) * Application::$PAGE_SIZE,
             'limit' => Application::$PAGE_SIZE,
+            'sort' => ['_id' => -1],
         ];
 
         if ($this->connection->gallery->count($query, $options) == 0)

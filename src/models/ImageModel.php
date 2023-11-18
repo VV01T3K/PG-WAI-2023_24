@@ -38,7 +38,7 @@ class ImageModel extends Model
 
         $this->path = Application::$ROOT . "/web/Images/original/" . $this->unique_name;
         if (!move_uploaded_file($this->tmp_path, $this->path))
-            return "Błąd przy przesyłaniu danych!";
+            return false;
 
         $imgDB = [
             'sharer_id' => ($_SESSION['user_id'] ?? false),
@@ -50,6 +50,8 @@ class ImageModel extends Model
         ];
 
         Application::$app->db->saveImage($imgDB);
+
+        return true;
     }
 
     public function validate()
@@ -107,13 +109,13 @@ class ImageModel extends Model
             $img = imagecreatefromjpeg($this->path);
 
         $opacity = 0.5;
-        $font_size = 20;
+        $font_size = 16 * (imagesx($img) / imagesy($img));
         $font = Application::$ROOT . "/web/static/fonts/Geist.Mono/GeistMono-SemiBold.otf";
 
         $color = imagecolorallocatealpha($img, 220, 20, 60, (1 - $opacity) * 127);
-        $angle = -15;
-        $x = $font_size / 2;
-        $y = $font_size * 1.5;
+        $angle = -rad2deg(atan2(imagesy($img), imagesx($img))) + ($font_size / 15);
+        $x = $font_size / 5;
+        $y = $font_size / 1.1;
         imagettftext($img, $font_size, $angle, $x, $y, $color, $font, $this->watermark);
 
 

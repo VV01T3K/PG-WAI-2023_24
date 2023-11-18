@@ -76,12 +76,14 @@ class SiteController extends Controller
 
             $imageModel = new ImageModel();
             $imageModel->loadData($request->getBody());
+
             $imageModel->loadImage($_FILES['img']);
 
             if ($imageModel->validate())
                 return $this->render('image', $imageModel);
 
-            $imageModel->save();
+            if (!$imageModel->save())
+                return $this->render('image', ['msg' => "Internal error!"]);
 
             $imageModel->process();
 
