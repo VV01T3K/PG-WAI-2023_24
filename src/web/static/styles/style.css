@@ -293,3 +293,14 @@ main:has(#splash404) section {
     align-items: center;
     margin-bottom: -0.35rem;
 }
+
+.vis {
+    font-size: 1rem;
+    position: absolute;
+    left: -0.75rem;
+    top: -0.75rem;
+    background-color: var(--clr-val-dark);
+    border-radius: 0.5rem;
+    padding: 1rem 0.5rem 0.5rem 1rem;
+    border: 2px solid var(--clr-val-accent);
+}

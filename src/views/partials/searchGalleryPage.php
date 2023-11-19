@@ -39,6 +39,9 @@
     <?php foreach ($images as $image): ?>
         <div class="image">
             <div class="thumb">
+                <?php if (($image['visibility'] ?? false) == 'private'): ?>
+                    <div class="vis">Private</div>
+                <?php endif ?>
                 <a href="Images/watermark/<?= $image['file_name'] ?>">
                     <img src="/Images/thumbnail/<?= $image['file_name'] ?>" alt="<?= $image['title'] ?>">
                 </a>

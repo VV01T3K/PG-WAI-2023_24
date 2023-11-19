@@ -20,6 +20,9 @@
         <?php foreach ($images as $image): ?>
             <div class="image">
                 <div class="thumb">
+                    <?php if (($image['visibility'] ?? false) == 'private'): ?>
+                        <div class="vis">Private</div>
+                    <?php endif ?>
                     <label class="checkbox">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
