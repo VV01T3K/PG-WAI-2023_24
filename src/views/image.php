@@ -39,6 +39,14 @@
                     <?= $errors['title'] ?? '' ?>
                 </h6>
             </label>
+            <label>
+                <h4>Public <input type="radio" name="visibility" value="public" checked></h4>
+
+            </label>
+            <label>
+                <h4>Private <input type="radio" name="visibility" value="private"></h4>
+
+            </label>
             <button class="val">Publish</button>
             <span>
                 <?= $msg ?? '' ?>

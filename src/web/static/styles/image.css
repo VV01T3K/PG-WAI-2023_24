@@ -15,3 +15,11 @@ main span {
     align-items: center;
     text-align: left;
 }
+input[type="radio"] {
+    margin-left: -2.5rem;
+    scale: 1.8;
+    accent-color: var(--clr-val-accent);
+}
+input[type="radio"]:hover {
+    scale: 2;
+}
