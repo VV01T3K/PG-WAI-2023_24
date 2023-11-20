@@ -27,3 +27,9 @@ main > section > form > button {
 .warning {
     width: 86%;
 }
+
+.reg {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}

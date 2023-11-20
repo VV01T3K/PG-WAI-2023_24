@@ -45,6 +45,9 @@ class SiteController extends Controller
 
             $body = $request->getBody();
 
+            if (!isset($_SESSION['']))
+                return "Deleted!";
+
             $_SESSION['fav'] =
                 array_values(
                     array_diff(

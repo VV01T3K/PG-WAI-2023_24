@@ -16,11 +16,11 @@
     <script defer src="static/scripts/script.js"></script>
     <script defer src="static/scripts/htmx.min.js"></script>
 
-    <link rel="preload" as="image" href="static/Img/mini/valorant-splash-mini.jpg" fetchpriority="high">
-    <link rel="preload" as="image" href="static/Img/mini/register-splash-mini.png" fetchpriority="high">
-    <link rel="preload" as="image" href="static/Img/mini/login-splash1-mini.png" fetchpriority="high">
-    <link rel="preload" as="image" href="static/Img/mini/login-splash2-mini.png" fetchpriority="high">
-    <link rel="preload" as="image" href="static/Img/mini/gallery-splash-mini.png" fetchpriority="high">
+    <!-- <link rel="preload" as="image" href="static/Img/mini/valorant-splash-mini.jpg" fetchpriority="high"> -->
+    <!-- <link rel="preload" as="image" href="static/Img/mini/register-splash-mini.png" fetchpriority="high"> -->
+    <!-- <link rel="preload" as="image" href="static/Img/mini/login-splash1-mini.png" fetchpriority="high"> -->
+    <!-- <link rel="preload" as="image" href="static/Img/mini/login-splash2-mini.png" fetchpriority="high"> -->
+    <!-- <link rel="preload" as="image" href="static/Img/mini/gallery-splash-mini.png" fetchpriority="high"> -->
 
 </head>
 
@@ -29,7 +29,7 @@
         <nav>
             <menu>
                 <li title="Back">
-                    <a href="/">
+                    <a class="historyBack" onclick="history.back()">
                         <svg class="rewind" id="rewind" viewBox="0 0 24 24" fill="none" stroke-width="2">
                             <polygon points="11 19 2 12 11 5 11 19"></polygon>
                             <polygon points="22 19 13 12 22 5 22 19"></polygon>

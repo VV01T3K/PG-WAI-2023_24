@@ -9,7 +9,7 @@
         </div>
         <div class="htmx">
             <button hx-vals='js:{payload: delete_favs()}' hx-delete="/favorites" hx-target="#response"
-                style="margin-top: 5.2rem;">
+                style="margin-top: 2.3rem;">
                 Delete
             </button>
             <p id="response"></p>

@@ -50,7 +50,7 @@ class AuthController extends Controller
 
             $registerModel->register();
 
-            return $this->render('register', ['msg' => "Registered"]);
+            return $this->render('register', ['msg' => "Registered as " . $_SESSION["user_login"]]);
         }
         return $this->renderHttpCode(405);
     }

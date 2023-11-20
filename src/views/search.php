@@ -12,6 +12,8 @@
     </div>
 
     <div id="resp">
-        <?= $msg ?? "" ?>
+        <section id="images">
+            <?= $msg ?? "" ?>
+        </section>
     </div>
 </main>

@@ -304,3 +304,6 @@ main:has(#splash404) section {
     padding: 1rem 0.5rem 0.5rem 1rem;
     border: 2px solid var(--clr-val-accent);
 }
+.historyBack {
+    cursor: pointer;
+}

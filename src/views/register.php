@@ -34,7 +34,9 @@
                 </h6>
             </label>
             <button class="val">Send</button>
-            <?= $msg ?? '' ?>
+            <span class="reg">
+                <?= $msg ?? '' ?>
+            </span>
         </form>
         <br>
         <h4><a href="/login">I already have an account!!</a></h4>
