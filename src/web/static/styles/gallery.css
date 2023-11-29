@@ -138,11 +138,6 @@
     opacity: 0.65;
 }
 
-.images:empty::after {
+#images:empty::after {
     content: "No images found";
-    color: var(--clr-val-neutral-0);
-    font-size: 1.5rem;
-    font-family: ValorantFont;
-    text-align: center;
-    margin-top: 2rem;
 }

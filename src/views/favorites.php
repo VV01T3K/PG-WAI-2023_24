@@ -16,8 +16,7 @@
         </div>
         <img id="splash4" src="static/Img/gallery-splash.png" alt="gallery-splash" />
     </div>
-    <section id="images">
-        <?php foreach ($images as $image): ?>
+    <section id="images"><?php foreach ($images as $image): ?>
             <div class="image">
                 <div class="thumb">
                     <?php if (($image['visibility'] ?? false) == 'private'): ?>
@@ -46,7 +45,6 @@
                     </span>
                 </div>
             </div>
-        <?php endforeach ?>
-    </section>
+        <?php endforeach ?></section>
 </main>
 <script defer src="static/scripts/gallery.js"></script>
