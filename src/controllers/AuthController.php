@@ -13,6 +13,7 @@ class AuthController extends Controller
     {
         session_unset();
         session_destroy();
+        setcookie("PHPSESSID", "", time()-3600);
         header('Location: /');
     }
     public function login($request)
