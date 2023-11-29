@@ -49,6 +49,9 @@ class Router
     }
     public function renderView($view, $params = [])
     {
+
+        $msg = $_SESSION["msg"] ?? "";
+        unset($_SESSION["msg"]);
         foreach ($params as $key => $value) {
             $$key = $value;
         }
@@ -66,6 +69,13 @@ class Router
         }
 
         include_once Application::$ROOT . "/views$view_path.php";
+    }
+    public function redirect($url, $params = [])
+    {
+        if ($params) 
+            $_SESSION["msg"] = $params["msg"];
+        header("Location: $url");
+        exit;
     }
 
 

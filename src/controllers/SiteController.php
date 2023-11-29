@@ -86,11 +86,11 @@ class SiteController extends Controller
                 return $this->render('image', $imageModel);
 
             if (!$imageModel->save())
-                return $this->render('image', ['msg' => "Internal error!"]);
+                $this->redirect('image', ['msg' => "Internal error!"]);
 
             $imageModel->process();
 
-            return $this->render('image', ['msg' => "Finished sending and processing image!!"]);
+            $this->redirect('image', ['msg' => "Finished sending and processing image!!"]);
         }
         return $this->renderHttpCode(405);
     }

@@ -16,4 +16,8 @@ class Controller
     {
         return Application::$app->router->renderView(...Application::$app->response->httpCode($code));
     }
+    public function redirect($url, $params = [])
+    {
+        return Application::$app->router->redirect($url, $params);
+    }
 }

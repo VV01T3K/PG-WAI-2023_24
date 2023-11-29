@@ -31,7 +31,7 @@ class AuthController extends Controller
 
             $loginModel->login();
 
-            return $this->render('login', ['msg' => "Logged in as " . $_SESSION["user_login"]]);
+            $this->redirect('login', ['msg' => "Logged in as " . $_SESSION["user_login"]]);
         }
         return $this->renderHttpCode(405);
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
 
             $registerModel->register();
 
-            return $this->render('register', ['msg' => "Registered as " . $_SESSION["user_login"]]);
+            $this->redirect('register', ['msg' => "Registered as " . $_SESSION["user_login"]]);
         }
         return $this->renderHttpCode(405);
     }
