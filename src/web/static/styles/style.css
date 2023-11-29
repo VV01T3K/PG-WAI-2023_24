@@ -177,21 +177,7 @@ h3 {
     border-radius: 2rem;
     margin: auto;
     margin-right: -0.5rem;
-    background-image: url("../Img/mini/valorant-splash-mini.jpg");
 }
-#splash1 {
-    background-image: url("../Img/mini/login-splash1-mini.png");
-}
-#splash2 {
-    background-image: url("../Img/mini/login-splash2-mini.png");
-}
-#splash3 {
-    background-image: url("../Img/mini/register-splash-mini.png");
-}
-#splash4 {
-    background-image: url("../Img/mini/gallery-splash-mini.png");
-}
-
 .rewind {
     stroke: var(--clr-val-neutral-0);
     height: 2rem;
