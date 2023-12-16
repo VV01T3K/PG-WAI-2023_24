@@ -16,7 +16,7 @@ main > div img {
         grid-template-columns: auto;
     }
     main > div {
-        max-width: 50vw;
+        max-width: 90vw;
     }
 }
 

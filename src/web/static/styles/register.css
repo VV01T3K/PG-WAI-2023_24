@@ -18,7 +18,7 @@ main > section > form > button {
 @media (max-width: 900px) {
     main {
         grid-template-columns: auto;
-        max-width: min-content;
+        max-width: 90vw;
     }
     main > div {
         margin: unset;
