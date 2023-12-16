@@ -3,6 +3,7 @@ namespace app\core;
 
 use MongoDB\Client;
 use MongoDB\BSON\ObjectId;
+use MongoDB\Driver\Exception\ConnectionTimeoutException;
 
 class Business
 {
@@ -10,20 +11,26 @@ class Business
 
     public function __construct()
     {
-        $client = new Client(
-            Application::$DB_HOST,
-            [
-                'username' => Application::$DB_USER,
-                'password' => Application::$DB_PASS,
-            ]
-        );
-        $this->connection = $client->wai;
+        try {
 
-        if (!$this->collectionExists('users')) {
-            $this->connection->createCollection('users');
-        }
-        if (!$this->collectionExists('gallery')) {
-            $this->connection->createCollection('gallery');
+            $client = new Client(
+                Application::$DB_HOST,
+                [
+                    'username' => Application::$DB_USER,
+                    'password' => Application::$DB_PASS,
+                ]
+            );
+            $this->connection = $client->wai;
+
+            if (!$this->collectionExists('users')) {
+                $this->connection->createCollection('users');
+            }
+            if (!$this->collectionExists('gallery')) {
+                $this->connection->createCollection('gallery');
+            }
+
+        } catch (ConnectionTimeoutException $e) {
+            die("Conenction to database failed. Please try again later.\n" . $e->getMessage());
         }
     }
 

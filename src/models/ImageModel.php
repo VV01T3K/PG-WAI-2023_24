@@ -79,6 +79,11 @@ class ImageModel extends Model
         if ($this->errors)
             $this->msg = "Errors in form!";
 
+        if ($_FILES['img']['error'] !== UPLOAD_ERR_OK) {
+            $this->msg = "File upload error!";
+            $this->errors['img'][0] = "File upload error!";
+        }
+
         return $this->errors;
     }
     public function miniaturize($width, $height)
