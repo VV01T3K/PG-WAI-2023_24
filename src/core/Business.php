@@ -4,6 +4,7 @@ namespace app\core;
 use MongoDB\Client;
 use MongoDB\BSON\ObjectId;
 use MongoDB\Driver\Exception\ConnectionTimeoutException;
+use Exception;
 
 class Business
 {
